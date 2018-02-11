@@ -1,0 +1,6 @@
+# title: Receive webhooks and demo your application from localhost
+title: Automation for Kubernetes - 
+site_description: "Fully automated, policy driven continuous Deployment for Kubernetes"
+google_analytics: UA-91622498-1
+root_domain: keel.sh
+vue_version: 2.5.1

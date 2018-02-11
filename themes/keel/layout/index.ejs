@@ -1,0 +1,170 @@
+<div class="sidebar">
+  <div class="sidebar-inner-index">
+    <ul class="main-menu">
+      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+    </ul>
+  </div>
+</div>
+
+<div id="hero">
+  <div class="inner">
+    <div class="left">
+      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
+    </div><div class="right">
+      <h2 class="vue">Keel</h2>
+      <h1>
+        Fully automated
+        <br>
+        Kubernetes workload updates
+      </h1>
+      <p>
+        <a class="button" href="<%- url_for("/v1/guide") %>">LEARN MORE</a>
+        <a class="button white" href="<%- url_for("/v1/guide/installation.html") %>">INSTALL</a>        
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="shells">
+  <div class="inner">
+    <div class="left">
+      <div class="shell">
+        <div class="upper">
+          <div class="buttons">
+            <div class="button red">
+              <div class="inner-light-top"></div>
+              <div class="inner-light-bottom"></div>
+              <div class="inner-dark-top"></div>
+            </div>
+            <div class="button yellow">
+              <div class="inner-light-top"></div>
+              <div class="inner-dark-top"></div>
+              <div class="inner-light-bottom"></div>
+            </div>
+            <div class="button green">
+              <div class="inner-light-top"></div>
+              <div class="inner-dark-top"></div>
+              <div class="inner-light-bottom"></div>
+            </div>
+          </div>
+          
+        </div>
+        <div id="main">                    
+          <div id="enter">
+            <span id="filler">      
+              <span class="accent">></span>    
+              kubectl create -f deployment-rbac.yaml
+            </span>       
+          </div>
+          <br/>
+
+          <div id="enter" >
+            <span id="filler">          
+              namespace <span class="accent">"keel"</span> created
+            </span>       
+          </div>          
+          <br/> 
+
+          <div id="enter" >
+            <span id="filler">          
+              serviceaccount <span class="accent">"keel"</span> created
+            </span>       
+          </div>          
+          <br/> 
+
+          <div id="enter" >
+            <span id="filler">          
+              clusterrolebinding <span class="accent">"keel-clusterrole-binding"</span> created
+            </span>       
+          </div>          
+          <br/> 
+
+          <div id="enter" >
+            <span id="filler">          
+              clusterrole <span class="accent">"keel-clusterrole"</span> created
+            </span>       
+          </div>          
+          <br/> 
+
+          <div id="enter" >
+            <span id="filler">          
+              deployment <span class="accent">"keel"</span> created
+            </span>       
+          </div>                    
+        </div>
+      </div>  
+    </div><div class="right">
+      <h2 class="vue">Self-hosted, deployable in seconds</h2>
+      <p class="point">
+        Single command, no dependencies. No lock-in, no custom configuration files. Start using now.
+      </p>      
+      <p>
+        <a class="button white" href="<%- url_for("/v1/guide/installation.html#Deploying-with-kubectl") %>">LEARN MORE</a>        
+      </p>
+    </div>  
+  </div>  
+</div>  
+
+<div id="highlights">
+  <div class="inner">
+    <div class="point">
+      <h2>No CLI/API required</h2>
+      <p>
+        Runs as a single container, no database required. Policies and trigger types are specified in your application deployment files or Helm charts. 
+        Keel extends Kubernetes without adding complexity.
+      </p>
+    </div>  
+
+    <div class="point">
+      <h2>Policy-driven updates</h2>
+      <p>        
+        In order for Keel Just specify on the applications themselves, when you want them to be updated, i.e. from 0.1.0 to 0.2.0 (minor) 
+        or only major versions.
+      </p>
+    </div> 
+
+    <div class="point">
+      <h2>Open Source</h2>
+      <p>
+          Keel is Open Source and was designed to be easily extendable. Providers, triggers and notification mechanisms are just default interface implementations. 
+          If you need Nomad, Docker Swarm or Mesos support, it's easy to add it.
+      </p>
+    </div>      
+  </div>
+</div>
+
+<div id="hero">
+  <div class="inner">
+    <div class="center">      
+      <h3>
+        Not finding what you are looking for?
+      </h3>
+      <p>
+        Send us an email or submit an issue.
+      </p>
+      <p>        
+        <a class="button white" href="mailto:info@webhookrelay.com" rel="nofollow">Send us an email</a> <a class="button white" href="https://github.com/keel-hq/keel/issues" rel="nofollow">Submit an issue</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="footer">  
+  <p>Copyright &copy; 2016-<%- new Date().getFullYear() %> AppScension Ltd</p>
+  <p><a href="mailto:support@webhookrelay.com" class="nav-link" rel="nofollow">support@webhookrelay.com</a></p>
+</div>
+
+<script>
+(function () {
+  var topScrolled = false  
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 165 && !topScrolled) {
+      topScrolled = true
+      document.getElementById('mobile-bar').classList.remove('top')
+    } else if (window.pageYOffset <= 165 && topScrolled) {
+      topScrolled = false
+      document.getElementById('mobile-bar').classList.add('top')
+    }   
+  })
+})()
+</script>

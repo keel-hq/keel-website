@@ -1,0 +1,70 @@
+<%
+    var lastYear;
+    var lastMonth;
+%>
+<div id="archives" class="main-content-wrap">
+    <div class="sidebar blog">
+        <div class="sidebar-inner">
+            <ul class="main-menu">
+            <%- partial('partials/main_menu', { context: 'nav' }) %>
+            </ul>
+            <div class="list">
+            <h2>
+                Recent Posts
+                <a href="<%- url_for("/atom.xml") %>" target="_blank" style="vertical-align: middle; margin-left: 5px;">
+                <img src="<%- url_for("/images/feed.png") %>" style="width: 15px; height: 15px;">
+                </a>
+            </h2>
+            <ul style="padding: 0;">
+            <% site.posts.sort('date', -1).limit(20).each(function (post) { %>
+                <li>
+                <a href="/<%- post.path %>" class="sidebar-link<%- page.title === post.title ? ' current' : '' %>"><%- post.title %></a>
+                </li>
+            <% }) %>
+            </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="content with-sidebar blog post">  
+    <h5 class="archive-result text-color-base text-xlarge"></h5>    
+        <% site.posts.sort('date', 'desc').each(function(post) { %>
+            <% var currentYear = post.date.year(); %>
+            <% var currentMonth = post.date.format('MM'); %>
+            <% if (lastYear != currentYear) { %>
+                <% if (lastYear != null) { %>
+                    </div>
+                    <% lastMonth = null; %>
+                <% } %>
+                <% lastYear = currentYear; %>
+                <div class="archive archive-year box" data-date="<%= post.date.year() %>">
+                    <h4 class="archive-title">
+                        <%= currentYear %>
+                    </h4>
+            <% } %>
+            <% if (lastMonth != currentMonth) { %>
+                <% if (lastMonth != null) { %>
+                    </ul>
+                <% } %>
+                <ul class="archive-posts archive-month" data-date="<%= post.date.format('YYYYMM') %>">
+                    <h5 class="archive-title">
+                        <%= post.date.locale(page.lang).format('MMMM') %>
+                    </h5>
+                <% lastMonth = currentMonth; %>
+            <% } %>
+            <li class="archive-post archive-day" data-date="<%= post.date.format('MMM D[,] YYYY') %>">
+                <a class="archive-post-title" href="<%- url_for(post.path) %>"><%= post.title || '(' + __('post.no_title') + ')' %></a>
+                <span class="archive-post-date">                
+                    <%= ' - ' + post.date.format('MMM D[,] YYYY') %>
+                </span>
+            </li>
+        <% }) %>
+    </div>    
+    <div>
+      <p>    
+        <a class="tag tag--primary tag--small t" href="<%- url_for("/all-tags/") %>">all tags</a>      
+      </p>
+    </div>
+</div>
+
+

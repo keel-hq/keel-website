@@ -1,0 +1,64 @@
+<div id="tags-archives" >
+  <div class="sidebar blog">
+    <div class="sidebar-inner">
+        <ul class="main-menu">
+        <%- partial('partials/main_menu', { context: 'nav' }) %>
+        </ul>
+        <div class="list">
+        <h2>
+            Recent Posts
+            <a href="<%- url_for("/atom.xml") %>" target="_blank" style="vertical-align: middle; margin-left: 5px;">
+            <img src="<%- url_for("/images/feed.png") %>" style="width: 15px; height: 15px;">
+            </a>
+        </h2>
+        <ul style="padding: 0;">
+        <% site.posts.sort('date', -1).limit(20).each(function (post) { %>
+            <li>
+            <a href="/<%- post.path %>" class="sidebar-link<%- page.title === post.title ? ' current' : '' %>"><%- post.title %></a>
+            </li>
+        <% }) %>
+        </ul>
+        </div>
+     </div>
+  </div>
+  <div class="content with-sidebar blog post">  
+    <form id="filter-form" action="#">
+        <input name="tag" type="text" class="search-query st-default-search-input" autofocus="autofocus">
+    </form>
+    <h4>Tags</h4>
+    <h4 class="archive-result text-color-base text-xlarge"
+        data-message-zero="<%= __('global.tags_found.zero') %>"
+        data-message-one="<%= __('global.tags_found.one') %>"
+        data-message-other="<%= __('global.tags_found.other') %>">
+    </h4>
+    <div>
+    <% site.tags.sort('name').each(function(tag) { %>
+            <a class="tag tag--primary tag--small" href="<%= '#' + tag.name + '-list' %>" data-tag="<%= tag.name.toLowerCase() %>">
+                <%= tag.name %>
+            </a>
+    <% }); %>
+    </div>
+    <h4>Posts</h4>
+    <div>  
+    <% site.tags.sort('name').each(function(tag) { %>
+        <div id="<%= tag.name + '-list' %>" class="archive box" data-tag="<%= tag.name.toLowerCase() %>">
+            <h4 class="archive-title">                
+                <%= tag.name + ' (' + tag.length + ')' %>                
+            </h4>
+            <ul class="archive-posts">
+                <% site.tags.findOne({'name': tag.name}).posts.sort('date', 'desc').each(function(post) { %>
+                    <li class="archive-post">
+                        <a class="archive-post-title" href="<%- url_for(post.path) %>">
+                            <%= post.title || '(' + __('post.no_title') + ')' %>
+                        </a>
+                        <span class="archive-post-date">
+                            <%= ' - ' + post.date.format('MMM D[,] YYYY') %>
+                        </span>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</div>
