@@ -422,6 +422,9 @@ Example conversation:
 
 ![Approvals](/images/approvals.png)
 
+### Approving through Hipchat example
+
+Coming soon...
 
 ### HTTP endpoint
 
@@ -517,6 +520,10 @@ First, get a Slack token, info about that can be found in the [docs](https://get
 
 Keel will be sending messages when deployment updates succeed or fail.
 
+
+### Hipchat notifications
+
+Coming soon...
 
 ### Notification levels
 

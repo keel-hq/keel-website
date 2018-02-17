@@ -19,11 +19,11 @@ Keel can run anywhere and will do its job as long as it can connect to your Kube
 ### Prerequisites
 
 - **Kubernetes environment** (easiest way to get Kubernetes up and running is probably [Google Container Engine](https://cloud.google.com/container-engine/) or [Docker for Mac with Kubernetes](https://docs.docker.com/docker-for-mac/kubernetes/)
-- **[kubectl]((https://kubernetes.io/docs/user-guide/kubectl-overview/)**: Kubernetes client
+- **[kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/)**: Kubernetes client
 
 <p class="tip">We assume that your kubectl can access Kubernetes environment. If you have multiple environments, you should use <strong>kubectl config use-context [your cluster]</strong> command.</p>
 
-Configuration sample files are available in Keel repository on GitHub [here](https://github.com/rusenask/keel/tree/master/hack).
+Configuration sample files are available in Keel repository on GitHub [here](https://github.com/rusenask/keel/tree/master/hack) and [here](https://github.com/keel-hq/keel/tree/master/deployment).
 
 ### Installing
 

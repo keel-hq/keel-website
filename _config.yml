@@ -12,8 +12,6 @@ language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-# url: https://webhookrelay.com
-# url: https://rusenask.github.io/webrelay-landing
 url: https://keel.sh
 # root: /webrelay-landing/
 root: /
@@ -132,7 +130,7 @@ offline:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:rusenask/webrelay-landing.git
+  repository: git@github.com:keel-hq/keel-website.git
   branch: gh-pages
 
 feed:
@@ -141,16 +139,8 @@ feed:
   limit: 20
 
 alias:
-  api/index.html: v1/api/index.html
-  guide/class-and-style.html: v1/guide/class-and-style.html
-  guide/comparison.html: v1/guide/comparison.html
-  guide/components.html: v1/guide/components.html
-  guide/computed.html: v1/guide/computed.html
-  guide/conditional.html: v1/guide/conditional.html
-  guide/custom-directive.html: v1/guide/custom-directive.html
+  api/index.html: v1/api/index.html  
+  guide/comparison.html: v1/guide/comparison.html  
   guide/deployment.html: v1/guide/deployment.html
-  guide/events.html: v1/guide/events.html
-  guide/forms.html: v1/guide/forms.html
   guide/index.html: v1/guide/index.html
-  guide/installation.html: v1/guide/installation.html
-  guide/cli.html: v1/guide/cli.html
+  guide/installation.html: v1/guide/installation.html  
