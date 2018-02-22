@@ -525,6 +525,39 @@ Keel will be sending messages when deployment updates succeed or fail.
 
 Coming soon...
 
+
+### Mattermost notifications
+
+[Mattermost](https://about.mattermost.com/) is an open source Slack alternative, it's written in Go and React.
+
+If you don't have a Mattermost server, you can set one up by using Docker:
+
+```bash
+docker run --name mattermost-preview -d --publish 8065:8065 mattermost/mattermost-preview
+```
+
+Server should be reachable on: http://localhost:8065/
+
+Now, enable "incoming webhooks" in your Mattermost server. Documentation can be found [here](https://docs.mattermost.com/developer/webhooks-incoming.html):
+
+![Mattermost webhooks](/images/mattermost-webhooks.png)
+
+Also, you should enable icon and username override so users know that webhooks are coming from Keel:
+
+![Mattermost username and icon override](/images/mattermost-icon-username.png)
+
+Now, set environment variable for Keel with your Mattermost webhook endpoint:
+
+```bash
+export MATTERMOST_ENDPOINT="http://your-mattermost:8065/hooks/z45wrrsu6f8o1fxugnpk6wca9h"
+```
+
+That's it, Keel notifications for Mattermost enabled:
+
+![Mattermost notification](/images/mattermost-notification.png)
+
+> If you want to override bot's username, you can supply `MATTERMOST_USERNAME=somethingelse` environment variable.
+
 ### Notification levels
 
 Set notification levels via `NOTIFICATION_LEVEL` environment variable. Available levels: debug, info, success, warn, error, fatal. This setting defaults to `info`.
