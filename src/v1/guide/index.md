@@ -35,5 +35,9 @@ So, once you have deployed Keel in your Kubernetes cluster, the workflow looks l
 
 Easy! Sounds like a PaaS, right?
 
+Minimal Keel configuration where it actively checks for new images:
+
+![minimal configuration](/images/keel-minimal-configuration.png)
+
 
 <sup>**1**</sup> users can specify that certain deployments have to be approved before proceeding with an update.
