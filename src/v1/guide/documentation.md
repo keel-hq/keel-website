@@ -546,11 +546,9 @@ Also, you should enable icon and username override so users know that webhooks a
 
 ![Mattermost username and icon override](/images/mattermost-icon-username.png)
 
-Now, set environment variable for Keel with your Mattermost webhook endpoint:
+Now, set `MATTERMOST_ENDPOINT` environment variable for Keel with your Mattermost webhook endpoint:
 
-```bash
-export MATTERMOST_ENDPOINT="http://your-mattermost:8065/hooks/z45wrrsu6f8o1fxugnpk6wca9h"
-```
+![Mattermost configuration](/images/mattermost-configuration.png)
 
 That's it, Keel notifications for Mattermost enabled:
 
@@ -561,3 +559,23 @@ That's it, Keel notifications for Mattermost enabled:
 ### Notification levels
 
 Set notification levels via `NOTIFICATION_LEVEL` environment variable. Available levels: debug, info, success, warn, error, fatal. This setting defaults to `info`.
+
+### Overriding default channels per deployment
+
+Some notification providers such as Slack and Hipchat allow apps to send notifications to multiple channels.
+
+For standard Kubernetes deployments use annotation with channels separated by commas: `keel.sh/notify=channelName1,channelName2`.
+
+![notifications per deployment](/images/notify-per-deployment.png)
+
+For Helm chart please specify `notificationChannels` string list to Keel config section in *values.yaml*:
+
+```yaml
+notificationChannels:
+  - chan1
+  - chan2
+```
+
+Your *values.yaml* should look like this:
+
+![notifications per chart](/images/notify-per-chart.png)
