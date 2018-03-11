@@ -290,14 +290,34 @@ Example sidecar container configuration for your `deployments.yaml`:
 
 If you are using Google Container Engine with Container Registry - search no more, pubsub trigger is for you.
 
+<p class="tip">You will need to create a Google Service Account to use PubSub functionality.</p>
+
 Since Keel requires access for the pubsub in GCE Kubernetes to work - your cluster node pools need to have permissions. If you are creating a new cluster - just enable pubsub from the start. If you have an existing cluster - currently the only way is to create a new node-pool through the gcloud CLI (more info in the [docs](https://cloud.google.com/sdk/gcloud/reference/container/node-pools/create?hl=en_US&_ga=1.2114551.650086469.1487625651)):
 
+
+#### Create a node pool with enabled pubsub scope
 
 ```bash
 gcloud container node-pools create new-pool --cluster CLUSTER_NAME --scopes https://www.googleapis.com/auth/pubsub
 ```
 
-Make sure that in the deployment.yaml you have set environment variables __PUBSUB=1__ and __PROJECT_ID=your-project-id__. 
+#### Create a service account
+
+Detailed tutorial on creating and configuring service account to access Google services is available here: https://cloud.google.com/kubernetes-engine/docs/tutorials/authenticating-to-cloud-platform.
+
+High level steps:
+
+1. Create a service account through Google cloud console with a role: `roles/pubsub.editor` (Keel needs to create topics as well for GCR registries).
+2. Furnish a new private key and choose key type as JSON.
+3. Import credentials as a secret:
+```bash
+kubectl create -n <KEEL NAMESPACE> secret generic pubsub-key --from-file=key.json=<PATH-TO-KEY-FILE>.json
+```
+4. Configure the application with the Secret
+
+#### Update Keel's environment variables
+
+Make sure that in the deployment.yaml you have set environment variables __PUBSUB=1__,  __PROJECT_ID=your-project-id__ and __GOOGLE_APPLICATION_CREDENTIALS__ to your secrets yaml. 
 
 
 ### Polling
@@ -425,6 +445,29 @@ Example conversation:
 ### Approving through Hipchat example
 
 Coming soon...
+
+### Approving through HTTP endpoint
+
+For third party integrations it can be useful to approve/reject via HTTP endpoint. You can send an approval via HTTP endpoint:
+
+**Method**: PUT
+**URL**: `http://localhost:9300/v1/approvals/<identifier>`
+
+```json
+{
+  "action": "approve" // <- approve/reject, defaults to "approve"
+  "voter": "john"
+}
+```
+
+Voter value is required to differentiate between individuals.
+
+### Deleting approvals through HTTP endpoint
+
+Third party integrations might need to delete pending approval requests through HTTP API:
+
+**Method**: DELETE
+**URL**: `http://localhost:9300/v1/approvals/<identifier>`
 
 ### HTTP endpoint
 
