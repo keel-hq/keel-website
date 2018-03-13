@@ -446,32 +446,28 @@ Example conversation:
 
 Coming soon...
 
-### Approving through HTTP endpoint
+### Managing approvals through HTTP endpoint
 
-For third party integrations it can be useful to approve/reject via HTTP endpoint. You can send an approval via HTTP endpoint:
+For third party integrations it can be useful to approve/reject/delete via HTTP endpoint. You can send an approval request via HTTP endpoint:
 
-**Method**: PUT
-**URL**: `http://localhost:9300/v1/approvals/<identifier>`
+**Method**: POST
+**Endpoint**: `/v1/approvals`
 
 ```json
 {
-  "action": "approve" // <- approve/reject, defaults to "approve"
-  "voter": "john"
+  "identifier": "default/myimage:1.5.5", // <- identifier for the approval request
+  "action": "approve", // <- approve/reject/delete, defaults to "approve"
+  "voter": "john",  
 }
 ```
 
-Voter value is required to differentiate between individuals.
+### Listing pending approvals through HTTP endpoint
 
-### Deleting approvals through HTTP endpoint
+You can also view pending/rejected/approved update request on `/v1/approvals` Keel endpoint (make sure you have service exported). Example response:
 
-Third party integrations might need to delete pending approval requests through HTTP API:
+**Method**: GET
+**Endpoint**: `/v1/approvals`
 
-**Method**: DELETE
-**URL**: `http://localhost:9300/v1/approvals/<identifier>`
-
-### HTTP endpoint
-
-You can also view pending/rejected/approved update request on `http://localhost:9300/v1/approvals`Keel endpoint (make sure you have service exported). Example response:
 
 ```json
 [
