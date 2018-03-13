@@ -121,7 +121,7 @@ helm upgrade --install whd webhookdemo --reuse-values \
 
 You can read in more details about supported policies, triggers and etc in the [docs](/v1/guide/documentation.html).
 
-Also you should check the [Webhooh demo app](https://github.com/webhookrelay/webhook-demo) and it's chart to have more clear
+Also you should check the [Webhook demo app](https://github.com/webhookrelay/webhook-demo) and it's chart to have more clear
 idea how to set automatic updates.
 
 
