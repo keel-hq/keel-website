@@ -18,7 +18,18 @@ Available policies:
 -  **major**: update major & minor & patch versions (same as __all__)
 -  **minor**: update only minor & patch versions (ignores major)
 -  **patch**: update only patch versions (ignores minor and major versions)
--  **force**: force update even if tag is not semver, ie: `latest`
+-  **force**: force update even if tag is not semver, ie: `latest`, optional label: **force-match=true** which will enforce that only the same tag will trigger force update.
+
+### Pre-release tags
+
+According to semver (http://semver.org/) spec, version tags can have additional metadata such as `1.0.0-dev`, `1.0.0-prod`, etc. Keel deals with semver tags by only allowing updates with the same version metadata.
+
+Example:
+
+- tag: `0.5.0-dev` policy: `minor` will only be updated by `0.6.0-dev` and not `0.5.0-prod`
+- tag `0.5.0` policy: `minor` will not be updated by `0.6.0-rc1`
+
+This way you can easily separate different environments and update them independently.
 
 ## Providers
 
@@ -26,7 +37,7 @@ Providers are direct integrations into schedulers or other tools (ie: Helm). Pro
 
 Available providers:
 
-- Kubernetes
+- Kubernetes (supports Deployments, DaemonSets, StatefulSets)
 - Helm
 
 While the goal is often the same, different providers can choose different update strategies.
@@ -88,7 +99,47 @@ spec:
 
 If Keel gets an event that `karolisr/webhook-demo:0.0.3` is available - it will update deployment and therefore start a rolling update.
 
-### Polling example
+### StatefulSet example
+
+StatefulSets can also be updated by Kubernetes once image has changed:
+
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: wd
+  namespace: default
+  labels: 
+      name: "wd"
+      keel.sh/policy: major    
+spec:
+  replicas: 1
+  serviceName: "wd"
+  selector:
+    matchLabels:
+      app: wd
+  template:
+    metadata:
+      name: wd
+      labels:
+        app: wd        
+    spec:      
+      containers:                    
+        - image: karolisr/webhook-demo:0.0.8
+          imagePullPolicy: Always            
+          name: wd
+          command: ["/bin/webhook-demo"]
+          ports:
+            - containerPort: 8090       
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8090
+            initialDelaySeconds: 30
+            timeoutSeconds: 10              
+```
+
+### Deployment polling example
 
 While the deployment above works perfect for both webhook and Google Cloud Pubsub triggers sometimes you can't control these events and the only available solution is to check registry yourself. This is where polling trigger comes to the rescue.
 
@@ -146,6 +197,49 @@ spec:
             privileged: true      
 ```
 
+### DaemonSet polling example
+
+Since DaemonSets have labels and annotations, their configuration is not different from Deployment or StatefulSet configuration:
+
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: wd-ds
+  namespace: default
+  labels: 
+      name: "wd"
+      keel.sh/policy: minor
+      keel.sh/trigger: poll            
+  annotations:
+      keel.sh/pollSchedule: "@every 1m"          
+spec:
+  selector:
+    matchLabels:
+      name: wd-ds
+  template:
+    metadata:
+      labels:
+        name: wd-ds
+    spec:      
+      containers:
+      - name: wd-ds
+        image: karolisr/webhook-demo:0.0.8
+        imagePullPolicy: Always            
+        name: wd
+        command: ["/bin/webhook-demo"]
+        ports:
+          - containerPort: 8090       
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8090
+          initialDelaySeconds: 30
+          timeoutSeconds: 10
+        securityContext:
+          privileged: true         
+```
+
 ### Helm 
 
 
@@ -184,6 +278,17 @@ If Keel gets an event that `karolisr/webhook-demo:0.0.9` is available - it will 
 
 * [1]  resolves during runtime image.repository -> karolisr/webhook-demo
 * [2]  resolves during runtime image.tag -> 0.0.8
+
+### Helm same tag force updates
+
+If you are not using versioning and pushing to the same tag, you should modify your template to change it on each update.
+
+Current consensus on a best way to "force" update Helm releases is by modifying your pod spec template by adding:
+
+**date/deploy-date: &lbrace;&lbrace; now | quote &rbrace;&rbrace;**
+
+annotation. This way Helm's Tiller will always detect a change in your template and Kubernetes will start a rolling update on the resource.
+
 
 #### Helm configuration polling example
 
@@ -258,8 +363,13 @@ can send events to this endpoint.
 
 #### Quay Webhooks 
 
-Documentation how to setup quay webhooks for __Repository Push__ events is available here: [https://docs.quay.io/guides/notifications.html](https://docs.quay.io/guides/notifications.html). These webhooks should be delivered to `/v1/webhooks/quay` endpoint. Any number of repositories 
+Documentation on how to setup Quay webhooks for __Repository Push__ events is available here: [https://docs.quay.io/guides/notifications.html](https://docs.quay.io/guides/notifications.html). These webhooks should be delivered to `/v1/webhooks/quay` endpoint. Any number of repositories 
 can send events to this endpoint.
+
+
+#### Azure Webhooks
+
+Documentation on how to setup Azure webhooks is available here: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-webhook. Azure webhooks should be delivered to `/v1/webhooks/azure` endpoint.
 
 
 #### Receiving webhooks without public endpoint
@@ -345,6 +455,18 @@ Entry                  | Description                                | Equivalent
 @hourly                | Run once an hour, beginning of hour        | `0 0 * * * *`
 
 
+### Polling with AWS ECR
+
+If you are using polling trigger with Amazon ECR registry, Keel deployment requires several environment variables:
+
+```
+AWS_ACCESS_KEY_ID=AKIA.........
+AWS_SECRET_ACCESS_KEY=3v..............
+AWS_REGION=us-east-2 # <- where your registry is
+```
+
+Documentation on setting up credentials can be found here: https://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/set-up-creds.html.
+
 #### Intervals
 
 You may also schedule a job to execute at fixed intervals. This is supported by formatting the cron spec like this:
@@ -368,9 +490,7 @@ Users can specify on deployments and Helm charts how many approvals do they have
 * __extensible__ - current implementation focuses on Slack but additional approval collection mechanisms are trivial to implement.
 * __out of the box Slack integration__ - the only needed Keel configuration is Slack auth token, Keel will start requesting approvals and users will be able to approve.
 * __stateful__ - uses [github.com/rusenask/k8s-kv](https://github.com/rusenask/k8s-kv) for persistence so even after updating itself (restarting) it will retain existing info.
-* __self cleaning__ - expired approvals will be removed after deadline is exceeded.
-
-Configuration is slightly different for Kubernetes and Helm providers. Details on how to configure your approvals:
+* __self cleaning__ - expired approvals will be removed after deadline is exceeded. 
 
 ### Enabling approvals
 
@@ -430,6 +550,26 @@ keel:
     - repository: image.repository
       tag: image.tag
 ```
+
+### Configuring approvals with Slack
+
+Slack configuration can be sometimes quite confusing. If something has changed, please create an issue.
+
+#### Step 1: adding bot app and getting token
+
+Go to your Slack apps page: https://[your-slack-community].slack.com/apps/A0F7YS25R-bots?page=1
+
+![Slack bots](/images/slack-bots.png)
+
+Set name to Keel
+
+![Slack bot name](/images/slack-bot-name.png)
+
+#### Step 2: supplying token to Keel
+
+Use provided token as an environment variable in Keel's deployment:
+
+```SLACK_TOKEN=token```            
 
 ### Approving through Slack example
 
