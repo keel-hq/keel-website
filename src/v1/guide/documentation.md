@@ -20,6 +20,50 @@ Available policies:
 -  **patch**: update only patch versions (ignores minor and major versions)
 -  **force**: force update even if tag is not semver, ie: `latest`
 
+## Additional settings
+
+Keel tries to mostly rely on your resource configuration files, such as deployment, daemonset, statefulset labels & annotations. Here is an example with all available options:
+
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: wd-ds
+  namespace: default
+  labels: 
+      name: "wd"
+      keel.sh/policy: minor     # update policy (available: patch, minor, major, all, force)
+      keel.sh/trigger: poll     # enable active repository checking (webhooks and GCR would still work)
+      keel.sh/approvals: "1"    # required approvals to update
+      keel.sh/match-tag: "true" # only makes a difference when used with 'force' policy, will only update if tag matches :dev->:dev, :prod->:prod 
+  annotations:
+      keel.sh/pollSchedule: "@every 1m"
+      keel.sh/notify: chan1,chan2  # chat channels to sent notification to
+spec:
+  selector:
+    matchLabels:
+      name: wd-ds
+  template:
+    metadata:
+      labels:
+        name: wd-ds
+    spec:      
+      containers:
+      - name: wd-ds
+        image: karolisr/webhook-demo:master
+        imagePullPolicy: Always            
+        name: wd
+        command: ["/bin/webhook-demo"]
+        ports:
+          - containerPort: 8090       
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8090
+          initialDelaySeconds: 30
+          timeoutSeconds: 10
+```
+
 ## Providers
 
 Providers are direct integrations into schedulers or other tools (ie: Helm). Providers are handling events created by triggers. Each provider can handle events in different ways, for example Kubernetes provider identifies impacted deployments and starts rolling update while Helm provider communicates with Tiller, identifies releases by Chart and then starts update. 
