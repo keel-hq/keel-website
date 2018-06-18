@@ -1,0 +1,574 @@
+
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <title>
+      Documentation —  Keel </title>
+    <meta charset="utf-8">
+    <meta name="description" content="Fully automated, policy driven continuous deployment solution for Kubernetes">    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Documentation —  Keel">
+    <meta property="og:description" content="Advanced, in-depth configuration of Keel -  Keel">
+    <meta property="og:image" content="https://keel.sh/images/logo.png ">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Documentation — Web Relay">
+    <meta name="twitter:description" content="Fully automated, policy driven continuous deployment solution for Kubernetes">
+    <meta name="twitter:image" content="https://keel.sh/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/ /images/icons/apple-icon-57x57.png ">
+    <link rel="apple-touch-icon" sizes="60x60" href="/ /images/icons/apple-icon-60x60.png ">
+    <link rel="apple-touch-icon" sizes="72x72" href="/ /images/icons/apple-icon-72x72.png ">
+    <link rel="apple-touch-icon" sizes="76x76" href="/ /images/icons/apple-icon-76x76.png ">
+    <link rel="apple-touch-icon" sizes="114x114" href="/ /images/icons/apple-icon-114x114.png ">
+    <link rel="apple-touch-icon" sizes="120x120" href="/ /images/icons/apple-icon-120x120.png ">
+    <link rel="apple-touch-icon" sizes="144x144" href="/ /images/icons/apple-icon-144x144.png ">
+    <link rel="apple-touch-icon" sizes="152x152" href="/ /images/icons/apple-icon-152x152.png ">
+    <link rel="apple-touch-icon" sizes="180x180" href="/ /images/icons/apple-icon-180x180.png ">
+    <link rel="icon" type="image/png" sizes="192x192" href="/ /images/icons/android-icon-192x192.png ">
+    <link rel="icon" type="image/png" sizes="32x32" href="/ /images/icons/favicon-32x32.png ">
+    <link rel="icon" type="image/png" sizes="96x96" href="/ /images/icons/favicon-96x96.png ">
+    <link rel="icon" type="image/png" sizes="16x16" href="/ /images/icons/favicon-16x16.png ">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#2979ff">
+    <meta name="theme-color" content="#2979ff">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">    
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
+
+    <!-- main page styles -->
+    <link rel="stylesheet" href="/css/page.css">
+
+    <!-- this needs to be loaded before guide's inline scripts -->      
+    <script>window.PAGE_TYPE = "guide"</script>    
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-103394074-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>    
+  </head>
+
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.png">
+    <span>Keel</span>
+  </a>
+  <ul id="nav">
+    <!-- <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+-->
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="/v1/guide/" class="nav-link current">Guide</a></li>
+      <!-- <li><a href="/v1/api/" class="nav-link">API</a></li> -->
+      <li><a href="/v1/examples/" class="nav-link">Examples</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">Ecosystem</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Help</h4></li>
+    <li><ul>
+      <li><a href="mailto:info@webhookrelay.com" class="nav-link" rel="nofollow">Email</a></li>            
+      <li><a href="https://github.com/keel-hq/keel/issues" class="nav-link" target="_blank" rel="noopener">Issue Tracker</a></li>            
+    </ul></li>
+    <li><h4>Tooling</h4></li>
+    <li>
+      <ul>        
+        <li><a href="https://hub.docker.com/r/keelhq/keel/" class="nav-link" target="_blank" rel="noopener">Docker Image</a></li>
+        
+      </ul>
+    </li>    
+    <li><h4>News</h4></li>
+    <li><ul>
+      <li><a href="https://twitter.com/keel_hq" class="nav-link" target="_blank" rel="noopener">Twitter</a></li>      
+    </ul></li>
+    <li><h4>Resource Lists</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/keel-hq" class="nav-link" target="_blank" rel="noopener">Official Repos</a></li>            
+    </ul></li>
+  </ul>
+</li>
+
+<!-- 
+<li>
+  <a href="/blog/" class="nav-link team">Blog</a>
+</li>
+ <li>
+  <a href="/v1/guide/team.html" class="nav-link team">Team</a>
+</li> -->
+<li>
+  <a class="nav-link team" target="_blank" href="https://github.com/keel-hq/keel">Github →</a>
+</li>
+
+  </ul>
+</div>
+
+      
+        <div id="main" class="fix-sidebar">
+          
+                
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <!-- <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+  </form>
+</li>
+-->
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="/v1/guide/" class="nav-link current">Guide</a></li>
+      <!-- <li><a href="/v1/api/" class="nav-link">API</a></li> -->
+      <li><a href="/v1/examples/" class="nav-link">Examples</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">Ecosystem</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Help</h4></li>
+    <li><ul>
+      <li><a href="mailto:info@webhookrelay.com" class="nav-link" rel="nofollow">Email</a></li>            
+      <li><a href="https://github.com/keel-hq/keel/issues" class="nav-link" target="_blank" rel="noopener">Issue Tracker</a></li>            
+    </ul></li>
+    <li><h4>Tooling</h4></li>
+    <li>
+      <ul>        
+        <li><a href="https://hub.docker.com/r/keelhq/keel/" class="nav-link" target="_blank" rel="noopener">Docker Image</a></li>
+        
+      </ul>
+    </li>    
+    <li><h4>News</h4></li>
+    <li><ul>
+      <li><a href="https://twitter.com/keel_hq" class="nav-link" target="_blank" rel="noopener">Twitter</a></li>      
+    </ul></li>
+    <li><h4>Resource Lists</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/keel-hq" class="nav-link" target="_blank" rel="noopener">Official Repos</a></li>            
+    </ul></li>
+  </ul>
+</li>
+
+<!-- 
+<li>
+  <a href="/blog/" class="nav-link team">Blog</a>
+</li>
+ <li>
+  <a href="/v1/guide/team.html" class="nav-link team">Team</a>
+</li> -->
+<li>
+  <a class="nav-link team" target="_blank" href="https://github.com/keel-hq/keel">Github →</a>
+</li>
+
+    </ul>
+    <div class="list">      
+      <h2>
+        Guide
+        
+          <select class="version-select">
+            <option value="SELF" selected>1.x</option>
+          </select>
+        
+      </h2>
+      <ul class="menu-root">
+  
+    
+    
+      
+        <li><h3>Essentials</h3></li>
+      
+      
+      
+      
+      
+      
+   
+    
+    
+    <li>
+      <a href="/v1/guide/index.html" class="sidebar-link">Introduction</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+   
+    
+    
+    <li>
+      <a href="/v1/guide/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+   
+    
+    
+    <li>
+      <a href="/v1/guide/quick-start.html" class="sidebar-link">Quick Start</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Advanced Configuration</h3></li>
+      
+      
+      
+      
+      
+   
+    
+    
+    <li>
+      <a href="/v1/guide/documentation.html" class="sidebar-link current">Documentation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Internals</h3></li>
+      
+      
+      
+      
+   
+    
+    
+    <li>
+      <a href="/v1/guide/dev-providers.html" class="sidebar-link">Providers in Depth</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+   
+    
+    
+    <li>
+      <a href="/v1/guide/dev-triggers.html" class="sidebar-link">Adding new trigger types</a>
+    </li>
+  
+  
+</ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="content guide with-sidebar documentation-guide">
+  
+    
+  
+  
+    <h1>Documentation</h1>
+  
+  <p>While it is extremely easy to set up Keel and just use provided default configuration, sometimes you need additional configuration to better solve your use-case.</p>
+<h2 id="Policies"><a href="#Policies" class="headerlink" title="Policies"></a>Policies</h2><p>Use policies to define when you want your application to be updated. Providers can have different mechanisms of getting configuration for your application, but policies are consistent across all of them. Following <a href="http://semver.org/" target="_blank" rel="noopener">semver</a><br>best practices allows you to safely automate application updates.</p>
+<p>Available policies:</p>
+<ul>
+<li><strong>all</strong>: update whenever there is a version bump</li>
+<li><strong>major</strong>: update major &amp; minor &amp; patch versions (same as <strong>all</strong>)</li>
+<li><strong>minor</strong>: update only minor &amp; patch versions (ignores major)</li>
+<li><strong>patch</strong>: update only patch versions (ignores minor and major versions)</li>
+<li><strong>force</strong>: force update even if tag is not semver, ie: <code>latest</code></li>
+</ul>
+<h2 id="Additional-settings"><a href="#Additional-settings" class="headerlink" title="Additional settings"></a>Additional settings</h2><p>Keel tries to mostly rely on your resource configuration files, such as deployment, daemonset, statefulset labels &amp; annotations. Here is an example with all available options:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">DaemonSet</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">wd-ds</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">  labels:</span> </span><br><span class="line"><span class="attr">      name:</span> <span class="string">"wd"</span></span><br><span class="line">      <span class="string">keel.sh/policy:</span> <span class="string">minor</span>     <span class="comment"># update policy (available: patch, minor, major, all, force)</span></span><br><span class="line">      <span class="string">keel.sh/trigger:</span> <span class="string">poll</span>     <span class="comment"># enable active repository checking (webhooks and GCR would still work)</span></span><br><span class="line">      <span class="string">keel.sh/approvals:</span> <span class="string">"1"</span>    <span class="comment"># required approvals to update</span></span><br><span class="line">      <span class="string">keel.sh/match-tag:</span> <span class="string">"true"</span> <span class="comment"># only makes a difference when used with 'force' policy, will only update if tag matches :dev-&gt;:dev, :prod-&gt;:prod </span></span><br><span class="line"><span class="attr">  annotations:</span></span><br><span class="line">      <span class="string">keel.sh/pollSchedule:</span> <span class="string">"@every 1m"</span></span><br><span class="line">      <span class="string">keel.sh/notify:</span> <span class="string">chan1,chan2</span>  <span class="comment"># chat channels to sent notification to</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    matchLabels:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">wd-ds</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        name:</span> <span class="string">wd-ds</span></span><br><span class="line"><span class="attr">    spec:</span>      </span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">wd-ds</span></span><br><span class="line"><span class="attr">        image:</span> <span class="string">karolisr/webhook-demo:master</span></span><br><span class="line"><span class="attr">        imagePullPolicy:</span> <span class="string">Always</span>            </span><br><span class="line"><span class="attr">        name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">        command:</span> <span class="string">["/bin/webhook-demo"]</span></span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="attr">          - containerPort:</span> <span class="number">8090</span>       </span><br><span class="line"><span class="attr">        livenessProbe:</span></span><br><span class="line"><span class="attr">          httpGet:</span></span><br><span class="line"><span class="attr">            path:</span> <span class="string">/healthz</span></span><br><span class="line"><span class="attr">            port:</span> <span class="number">8090</span></span><br><span class="line"><span class="attr">          initialDelaySeconds:</span> <span class="number">30</span></span><br><span class="line"><span class="attr">          timeoutSeconds:</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<h2 id="Providers"><a href="#Providers" class="headerlink" title="Providers"></a>Providers</h2><p>Providers are direct integrations into schedulers or other tools (ie: Helm). Providers are handling events created by triggers. Each provider can handle events in different ways, for example Kubernetes provider identifies impacted deployments and starts rolling update while Helm provider communicates with Tiller, identifies releases by Chart and then starts update. </p>
+<p>Available providers:</p>
+<ul>
+<li>Kubernetes</li>
+<li>Helm</li>
+</ul>
+<p>While the goal is often the same, different providers can choose different update strategies.</p>
+<h3 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h3><p>Kubernetes provider was the first, simplest provider added to Keel. Policies and trigger configuration for each application deployment is done through labels. </p>
+<p>Policies are specified through special label:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">keel.sh/policy=all</span><br></pre></td></tr></table></figure>
+<p>A policy to update only minor releases:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">keel.sh/policy=minor</span><br></pre></td></tr></table></figure>
+<h3 id="Kubernetes-example"><a href="#Kubernetes-example" class="headerlink" title="Kubernetes example"></a>Kubernetes example</h3><p>Here is an example application <code>deployment.yaml</code> where we instruct Keel to update container image whenever there is a new version:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">extensions/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span> </span><br><span class="line"><span class="attr">  name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">  labels:</span> </span><br><span class="line"><span class="attr">      name:</span> <span class="string">"wd"</span></span><br><span class="line">      <span class="string">keel.sh/policy:</span> <span class="string">all</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">wd</span>        </span><br><span class="line"></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      containers:</span>                    </span><br><span class="line"><span class="attr">        - image:</span> <span class="string">karolisr/webhook-demo:0.0.2</span></span><br><span class="line"><span class="attr">          imagePullPolicy:</span> <span class="string">Always</span>            </span><br><span class="line"><span class="attr">          name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">          command:</span> <span class="string">["/bin/webhook-demo"]</span></span><br><span class="line"><span class="attr">          ports:</span></span><br><span class="line"><span class="attr">            - containerPort:</span> <span class="number">8090</span>       </span><br><span class="line"><span class="attr">          livenessProbe:</span></span><br><span class="line"><span class="attr">            httpGet:</span></span><br><span class="line"><span class="attr">              path:</span> <span class="string">/healthz</span></span><br><span class="line"><span class="attr">              port:</span> <span class="number">8090</span></span><br><span class="line"><span class="attr">            initialDelaySeconds:</span> <span class="number">30</span></span><br><span class="line"><span class="attr">            timeoutSeconds:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">          securityContext:</span></span><br><span class="line"><span class="attr">            privileged:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>If Keel gets an event that <code>karolisr/webhook-demo:0.0.3</code> is available - it will update deployment and therefore start a rolling update.</p>
+<h3 id="Polling-example"><a href="#Polling-example" class="headerlink" title="Polling example"></a>Polling example</h3><p>While the deployment above works perfect for both webhook and Google Cloud Pubsub triggers sometimes you can’t control these events and the only available solution is to check registry yourself. This is where polling trigger comes to the rescue.</p>
+<blockquote>
+<p><strong>Note</strong>: when image with non-semver style tag is supplied (ie: <code>latest</code>) Keel will monitor SHA digest. If tag is semver - it will track and notify providers when new versions are available.</p>
+</blockquote>
+<p>Add labels:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">keel.sh/policy=force # add this to enable updates of non-semver tags</span><br><span class="line">keel.sh/trigger=poll</span><br></pre></td></tr></table></figure>
+<p>To specify custom polling schedule, check <a href="!--￼22--&gt;#cron-expression-format">cron expression format</a></p>
+<blockquote>
+<p><strong>Note</strong> that even if polling trigger is set - webhooks or pubsub events can still trigger updates</p>
+</blockquote>
+<p>Example deployment file for polling:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">extensions/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span> </span><br><span class="line"><span class="attr">  name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">  labels:</span> </span><br><span class="line"><span class="attr">      name:</span> <span class="string">"wd"</span></span><br><span class="line">      <span class="string">keel.sh/policy:</span> <span class="string">force</span></span><br><span class="line">      <span class="string">keel.sh/trigger:</span> <span class="string">poll</span>      </span><br><span class="line"><span class="attr">  annotations:</span></span><br><span class="line">      <span class="string">keel.sh/pollSchedule:</span> <span class="string">"@every 10m"</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">wd</span>        </span><br><span class="line"></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">        - image:</span> <span class="string">karolisr/webhook-demo:latest</span> <span class="comment"># this would start repository digest checks</span></span><br><span class="line"><span class="attr">          imagePullPolicy:</span> <span class="string">Always</span>            </span><br><span class="line"><span class="attr">          name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">          command:</span> <span class="string">["/bin/webhook-demo"]</span></span><br><span class="line"><span class="attr">          ports:</span></span><br><span class="line"><span class="attr">            - containerPort:</span> <span class="number">8090</span>       </span><br><span class="line"><span class="attr">          livenessProbe:</span></span><br><span class="line"><span class="attr">            httpGet:</span></span><br><span class="line"><span class="attr">              path:</span> <span class="string">/healthz</span></span><br><span class="line"><span class="attr">              port:</span> <span class="number">8090</span></span><br><span class="line"><span class="attr">            initialDelaySeconds:</span> <span class="number">30</span></span><br><span class="line"><span class="attr">            timeoutSeconds:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">          securityContext:</span></span><br><span class="line"><span class="attr">            privileged:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Helm"><a href="#Helm" class="headerlink" title="Helm"></a>Helm</h3><p>Helm helps you manage Kubernetes applications — Helm Charts helps you define, install, and upgrade even the most complex Kubernetes application. More information can be found on project’s website <a href="https://helm.sh/" target="_blank" rel="noopener">https://helm.sh/</a>. </p>
+<p>Keel works directly with Tiller (a daemon that is used by Helm CLI) to manage release upgrades when new images are available. </p>
+<h3 id="Helm-example"><a href="#Helm-example" class="headerlink" title="Helm example"></a>Helm example</h3><p>Keel is configured through your chart’s <code>values.yaml</code> file.</p>
+<p>Here is an example application <code>values.yaml</code> file where we instruct Keel to track and update specific values whenever there is a new version:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">replicaCount:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">image:</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="string">karolisr/webhook-demo</span></span><br><span class="line"><span class="attr">  tag:</span> <span class="string">"0.0.8"</span></span><br><span class="line"><span class="attr">  pullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line"><span class="attr">service:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">webhookdemo</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">ClusterIP</span></span><br><span class="line"><span class="attr">  externalPort:</span> <span class="number">8090</span></span><br><span class="line"><span class="attr">  internalPort:</span> <span class="number">8090</span></span><br><span class="line"></span><br><span class="line"><span class="attr">keel:</span></span><br><span class="line">  <span class="comment"># keel policy (all/major/minor/patch/force)</span></span><br><span class="line"><span class="attr">  policy:</span> <span class="string">all</span></span><br><span class="line">  <span class="comment"># images to track and update</span></span><br><span class="line"><span class="attr">  images:</span></span><br><span class="line"><span class="attr">    - repository:</span> <span class="string">image.repository</span> <span class="comment"># [1]</span></span><br><span class="line"><span class="attr">      tag:</span> <span class="string">image.tag</span>  <span class="comment"># [2]</span></span><br></pre></td></tr></table></figure>
+<p>If Keel gets an event that <code>karolisr/webhook-demo:0.0.9</code> is available - it will upgrade release values so Helm can start updating your application.</p>
+<ul>
+<li>[1]  resolves during runtime image.repository -&gt; karolisr/webhook-demo</li>
+<li>[2]  resolves during runtime image.tag -&gt; 0.0.8</li>
+</ul>
+<h4 id="Helm-configuration-polling-example"><a href="#Helm-configuration-polling-example" class="headerlink" title="Helm configuration polling example"></a>Helm configuration polling example</h4><p>This example demonstrates Keel configuration for polling.</p>
+<blockquote>
+<p><strong>Note</strong> that even if polling trigger is set - webhooks or pubsub events can still trigger updates</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">replicaCount:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">image:</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="string">karolisr/webhook-demo</span></span><br><span class="line"><span class="attr">  tag:</span> <span class="string">"0.0.8"</span></span><br><span class="line"><span class="attr">  pullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line"><span class="attr">service:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">webhookdemo</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">ClusterIP</span></span><br><span class="line"><span class="attr">  externalPort:</span> <span class="number">8090</span></span><br><span class="line"><span class="attr">  internalPort:</span> <span class="number">8090</span></span><br><span class="line"></span><br><span class="line"><span class="attr">keel:</span></span><br><span class="line">  <span class="comment"># keel policy (all/major/minor/patch/force)</span></span><br><span class="line"><span class="attr">  policy:</span> <span class="string">all</span></span><br><span class="line">  <span class="comment"># trigger type, defaults to events such as pubsub, webhooks</span></span><br><span class="line"><span class="attr">  trigger:</span> <span class="string">poll</span></span><br><span class="line">  <span class="comment"># polling schedule</span></span><br><span class="line"><span class="attr">  pollSchedule:</span> <span class="string">"@every 2m"</span></span><br><span class="line">  <span class="comment"># images to track and update</span></span><br><span class="line"><span class="attr">  images:</span></span><br><span class="line"><span class="attr">    - repository:</span> <span class="string">image.repository</span> <span class="comment"># [1]</span></span><br><span class="line"><span class="attr">      tag:</span> <span class="string">image.tag</span>  <span class="comment"># [2]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Triggers"><a href="#Triggers" class="headerlink" title="Triggers"></a>Triggers</h2><p>Triggers are entry points into the Keel. Their task is to collect information regarding updated images and send events to providers.</p>
+<p>Available triggers:</p>
+<ul>
+<li>Webhooks<ul>
+<li>Native Webhooks</li>
+<li>DockerHub Webhooks</li>
+<li>Quay Webhooks</li>
+<li>Receiving webhooks without public endpoint</li>
+</ul>
+</li>
+<li>Google Cloud GCR registry</li>
+<li>Polling</li>
+</ul>
+<h3 id="Webhooks"><a href="#Webhooks" class="headerlink" title="Webhooks"></a>Webhooks</h3><p>Webhooks are “user-defined HTTP callbacks”. They are usually triggered by some event, such as pushing image to a registry.</p>
+<h4 id="Native-Webhooks"><a href="#Native-Webhooks" class="headerlink" title="Native Webhooks"></a>Native Webhooks</h4><p>Native webhooks (simplified version) are accepted at <code>/v1/webhooks/native</code> endpoint with a payload that has <strong>name</strong> and <strong>tag</strong> fields: </p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"gcr.io/v2-namespace/hello-world"</span>, </span><br><span class="line">  <span class="attr">"tag"</span>: <span class="string">"1.1.1"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="DockerHub-Webhooks"><a href="#DockerHub-Webhooks" class="headerlink" title="DockerHub Webhooks"></a>DockerHub Webhooks</h4><p>DockerHub uses webhooks to inform 3rd party systems about repository related events such as pushed image.</p>
+<p><a href="https://docs.docker.com/docker-hub/webhooks" target="_blank" rel="noopener">https://docs.docker.com/docker-hub/webhooks</a> - go to your repository on<br><code>https://hub.docker.com/r/your-namespace/your-repository/~/settings/webhooks/</code> and point webhooks<br>to <code>/v1/webhooks/dockerhub</code> endpoint. Any number of repositories<br>can send events to this endpoint.</p>
+<h4 id="Quay-Webhooks"><a href="#Quay-Webhooks" class="headerlink" title="Quay Webhooks"></a>Quay Webhooks</h4><p>Documentation how to setup quay webhooks for <strong>Repository Push</strong> events is available here: <a href="https://docs.quay.io/guides/notifications.html" target="_blank" rel="noopener">https://docs.quay.io/guides/notifications.html</a>. These webhooks should be delivered to <code>/v1/webhooks/quay</code> endpoint. Any number of repositories<br>can send events to this endpoint.</p>
+<h4 id="Receiving-webhooks-without-public-endpoint"><a href="#Receiving-webhooks-without-public-endpoint" class="headerlink" title="Receiving webhooks without public endpoint"></a>Receiving webhooks without public endpoint</h4><p>If you don’t want to expose your Keel service - recommended solution is <a href="https://webhookrelay.com/" target="_blank" rel="noopener">https://webhookrelay.com/</a> which can deliver webhooks to your internal Keel service through a sidecar container.</p>
+<p>Example sidecar container configuration for your <code>deployments.yaml</code>:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">- image:</span> <span class="string">webhookrelay/webhookrelayd:0.6.0</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">webhookrelayd</span>          </span><br><span class="line"><span class="attr">  env:</span>                         </span><br><span class="line"><span class="attr">    - name:</span> <span class="string">KEY</span></span><br><span class="line"><span class="attr">      valueFrom:</span></span><br><span class="line"><span class="attr">        secretKeyRef:</span></span><br><span class="line"><span class="attr">          name:</span> <span class="string">webhookrelay-credentials</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">key</span>                </span><br><span class="line"><span class="attr">    - name:</span> <span class="string">SECRET</span></span><br><span class="line"><span class="attr">      valueFrom:</span></span><br><span class="line"><span class="attr">        secretKeyRef:</span></span><br><span class="line"><span class="attr">          name:</span> <span class="string">webhookrelay-credentials</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">secret</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">BUCKET</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">dockerhub</span></span><br></pre></td></tr></table></figure>
+<h3 id="Google-Cloud-GCR-registry"><a href="#Google-Cloud-GCR-registry" class="headerlink" title="Google Cloud GCR registry"></a>Google Cloud GCR registry</h3><p>If you are using Google Container Engine with Container Registry - search no more, pubsub trigger is for you.</p>
+<p class="tip">You will need to create a Google Service Account to use PubSub functionality.</p>
+
+<p>Since Keel requires access for the pubsub in GCE Kubernetes to work - your cluster node pools need to have permissions. If you are creating a new cluster - just enable pubsub from the start. If you have an existing cluster - currently the only way is to create a new node-pool through the gcloud CLI (more info in the <a href="https://cloud.google.com/sdk/gcloud/reference/container/node-pools/create?hl=en_US&amp;_ga=1.2114551.650086469.1487625651" target="_blank" rel="noopener">docs</a>):</p>
+<h4 id="Create-a-node-pool-with-enabled-pubsub-scope"><a href="#Create-a-node-pool-with-enabled-pubsub-scope" class="headerlink" title="Create a node pool with enabled pubsub scope"></a>Create a node pool with enabled pubsub scope</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcloud container node-pools create new-pool --cluster CLUSTER_NAME --scopes https://www.googleapis.com/auth/pubsub</span><br></pre></td></tr></table></figure>
+<h4 id="Create-a-service-account"><a href="#Create-a-service-account" class="headerlink" title="Create a service account"></a>Create a service account</h4><p>Detailed tutorial on creating and configuring service account to access Google services is available here: <a href="https://cloud.google.com/kubernetes-engine/docs/tutorials/authenticating-to-cloud-platform" target="_blank" rel="noopener">https://cloud.google.com/kubernetes-engine/docs/tutorials/authenticating-to-cloud-platform</a>.</p>
+<p>High level steps:</p>
+<ol>
+<li>Create a service account through Google cloud console with a role: <code>roles/pubsub.editor</code> (Keel needs to create topics as well for GCR registries).</li>
+<li>Furnish a new private key and choose key type as JSON.</li>
+<li><p>Import credentials as a secret:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl create -n &lt;KEEL NAMESPACE&gt; secret generic pubsub-key --from-file=key.json=&lt;PATH-TO-KEY-FILE&gt;.json</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Configure the application with the Secret</p>
+</li>
+</ol>
+<h4 id="Update-Keel’s-environment-variables"><a href="#Update-Keel’s-environment-variables" class="headerlink" title="Update Keel’s environment variables"></a>Update Keel’s environment variables</h4><p>Make sure that in the deployment.yaml you have set environment variables <strong>PUBSUB=1</strong>,  <strong>PROJECT_ID=your-project-id</strong> and <strong>GOOGLE_APPLICATION_CREDENTIALS</strong> to your secrets yaml. </p>
+<h3 id="Polling"><a href="#Polling" class="headerlink" title="Polling"></a>Polling</h3><p>Since only the owners of docker registries can control webhooks - it’s often convenient to use<br>polling. Be aware that registries can be rate limited so it’s a good practice to set up reasonable polling intervals.<br>While configuration for each provider can be slightly different - each provider has to accept several polling parameters:</p>
+<ul>
+<li>Explicitly enable polling trigger</li>
+<li>Supply polling schedule (defaults to 1 minute intervals)</li>
+</ul>
+<h4 id="Cron-expression-format"><a href="#Cron-expression-format" class="headerlink" title="Cron expression format"></a>Cron expression format</h4><p>Custom polling schedule can be specified as cron format or through predefined schedules (recommended solution). </p>
+<p>Available schedules:</p>
+<table>
+<thead>
+<tr>
+<th>Entry</th>
+<th>Description</th>
+<th>Equivalent To</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@yearly (or @annually)</td>
+<td>Run once a year, midnight, Jan. 1st</td>
+<td><code>0 0 0 1 1 *</code></td>
+</tr>
+<tr>
+<td>@monthly</td>
+<td>Run once a month, midnight, first of month</td>
+<td><code>0 0 0 1 * *</code></td>
+</tr>
+<tr>
+<td>@weekly</td>
+<td>Run once a week, midnight on Sunday</td>
+<td><code>0 0 0 * * 0</code></td>
+</tr>
+<tr>
+<td>@daily (or @midnight)</td>
+<td>Run once a day, midnight</td>
+<td><code>0 0 0 * * *</code></td>
+</tr>
+<tr>
+<td>@hourly</td>
+<td>Run once an hour, beginning of hour</td>
+<td><code>0 0 * * * *</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Intervals"><a href="#Intervals" class="headerlink" title="Intervals"></a>Intervals</h4><p>You may also schedule a job to execute at fixed intervals. This is supported by formatting the cron spec like this:</p>
+<p><code>@every &lt;duration&gt;</code></p>
+<p>where <em>duration</em> is a string accepted by <a href="http://golang.org/pkg/time/#ParseDuration" target="_blank" rel="noopener">time.ParseDuration</a>.</p>
+<p>For example, <em>@every 1h30m10s</em> would indicate a schedule that activates every 1 hour, 30 minutes, 10 seconds.</p>
+<blockquote>
+<p><strong>Tip</strong>: If you want to disable polling support for your Keel installation - set environment variable<br><strong>POLL=0</strong>.</p>
+</blockquote>
+<h2 id="Approvals"><a href="#Approvals" class="headerlink" title="Approvals"></a>Approvals</h2><p>Users can specify on deployments and Helm charts how many approvals do they have to collect before a resource gets updated. Main features:</p>
+<ul>
+<li><strong>non-blocking</strong> - multiple deployments/helm releases can be queued for approvals, the ones without specified approvals will be auto updated.</li>
+<li><strong>extensible</strong> - current implementation focuses on Slack but additional approval collection mechanisms are trivial to implement.</li>
+<li><strong>out of the box Slack integration</strong> - the only needed Keel configuration is Slack auth token, Keel will start requesting approvals and users will be able to approve.</li>
+<li><strong>stateful</strong> - uses <a href="https://github.com/rusenask/k8s-kv" target="_blank" rel="noopener">github.com/rusenask/k8s-kv</a> for persistence so even after updating itself (restarting) it will retain existing info.</li>
+<li><strong>self cleaning</strong> - expired approvals will be removed after deadline is exceeded.</li>
+</ul>
+<p>Configuration is slightly different for Kubernetes and Helm providers. Details on how to configure your approvals:</p>
+<h3 id="Enabling-approvals"><a href="#Enabling-approvals" class="headerlink" title="Enabling approvals"></a>Enabling approvals</h3><p>Approvals are enabled by default but currently there is only one way to approve/reject updates:<br>Slack - commands like:</p>
+<ul>
+<li><code>keel get approvals</code> - get all pending/approved/rejected approvals</li>
+<li><code>keel approve &lt;identifier&gt;</code> - approve specified request.</li>
+<li><code>keel reject &lt;identifier&gt;</code> - reject specified request.</li>
+</ul>
+<p>Make sure you have set <code>export SLACK_TOKEN=&lt;your slack token here&gt;</code> environment variable for Keel deployment.</p>
+<h3 id="Configuring-via-Kubernetes-deployments"><a href="#Configuring-via-Kubernetes-deployments" class="headerlink" title="Configuring via Kubernetes deployments"></a>Configuring via Kubernetes deployments</h3><p>The only required configuration for Kubernetes deployment to enable approvals is to add <code>keel.sh/approvals: &quot;1&quot;</code> with a number (string! as the underlying type is map[string]string) of required approvals.</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">extensions/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span> </span><br><span class="line"><span class="attr">  name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">  labels:</span> </span><br><span class="line"><span class="attr">      name:</span> <span class="string">"wd"</span></span><br><span class="line">      <span class="string">keel.sh/policy:</span> <span class="string">all</span></span><br><span class="line">      <span class="string">keel.sh/trigger:</span> <span class="string">poll</span>      </span><br><span class="line">      <span class="string">keel.sh/approvals:</span> <span class="string">"1"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Configuring-via-Helm-charts"><a href="#Configuring-via-Helm-charts" class="headerlink" title="Configuring via Helm charts"></a>Configuring via Helm charts</h3><p>To enable approvals for a Helm chart update Keel config section in <code>values.yaml</code> with a required number of approvals:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">replicaCount:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">image:</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="string">karolisr/webhook-demo</span></span><br><span class="line"><span class="attr">  tag:</span> <span class="string">"0.0.13"</span></span><br><span class="line"><span class="attr">  pullPolicy:</span> <span class="string">IfNotPresent</span> </span><br><span class="line"><span class="attr">service:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">webhookdemo</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">ClusterIP</span></span><br><span class="line"><span class="attr">  externalPort:</span> <span class="number">8090</span></span><br><span class="line"><span class="attr">  internalPort:</span> <span class="number">8090</span></span><br><span class="line"></span><br><span class="line"><span class="attr">keel:</span></span><br><span class="line">  <span class="comment"># keel policy (all/major/minor/patch/force)</span></span><br><span class="line"><span class="attr">  policy:</span> <span class="string">all</span></span><br><span class="line">  <span class="comment"># trigger type, defaults to events such as pubsub, webhooks</span></span><br><span class="line"><span class="attr">  trigger:</span> <span class="string">poll</span></span><br><span class="line">  <span class="comment"># polling schedule</span></span><br><span class="line"><span class="attr">  pollSchedule:</span> <span class="string">"@every 1m"</span></span><br><span class="line">  <span class="comment"># approvals required to proceed with an update</span></span><br><span class="line"><span class="attr">  approvals:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># images to track and update</span></span><br><span class="line"><span class="attr">  images:</span></span><br><span class="line"><span class="attr">    - repository:</span> <span class="string">image.repository</span></span><br><span class="line"><span class="attr">      tag:</span> <span class="string">image.tag</span></span><br></pre></td></tr></table></figure>
+<h3 id="Approving-through-Slack-example"><a href="#Approving-through-Slack-example" class="headerlink" title="Approving through Slack example"></a>Approving through Slack example</h3><p>Keel will send notifications to your Slack group about pending approvals. Approval process is as simple as replying to Keel:</p>
+<ul>
+<li>Approve: <code>keel approve default/whr:0.4.12</code></li>
+<li>Reject it: <code>keel reject default/whr:0.4.12</code></li>
+</ul>
+<p>Example conversation:</p>
+<p><img src="/images/approvals.png" alt="Approvals"></p>
+<h3 id="Approving-through-Hipchat-example"><a href="#Approving-through-Hipchat-example" class="headerlink" title="Approving through Hipchat example"></a>Approving through Hipchat example</h3><p>Coming soon…</p>
+<h3 id="Approving-through-HTTP-endpoint"><a href="#Approving-through-HTTP-endpoint" class="headerlink" title="Approving through HTTP endpoint"></a>Approving through HTTP endpoint</h3><p>For third party integrations it can be useful to approve/reject via HTTP endpoint. You can send an approval via HTTP endpoint:</p>
+<p><strong>Method</strong>: PUT<br><strong>URL</strong>: <code>http://localhost:9300/v1/approvals/&lt;identifier&gt;</code></p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "action": "approve" // &lt;- approve/reject, defaults to "approve"</span><br><span class="line">  "voter": "john"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Voter value is required to differentiate between individuals.</p>
+<h3 id="Deleting-approvals-through-HTTP-endpoint"><a href="#Deleting-approvals-through-HTTP-endpoint" class="headerlink" title="Deleting approvals through HTTP endpoint"></a>Deleting approvals through HTTP endpoint</h3><p>Third party integrations might need to delete pending approval requests through HTTP API:</p>
+<p><strong>Method</strong>: DELETE<br><strong>URL</strong>: <code>http://localhost:9300/v1/approvals/&lt;identifier&gt;</code></p>
+<h3 id="HTTP-endpoint"><a href="#HTTP-endpoint" class="headerlink" title="HTTP endpoint"></a>HTTP endpoint</h3><p>You can also view pending/rejected/approved update request on <code>http://localhost:9300/v1/approvals</code>Keel endpoint (make sure you have service exported). Example response:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="attr">"provider"</span>: <span class="string">"helm"</span>,</span><br><span class="line">		<span class="attr">"identifier"</span>: <span class="string">"default/wd:0.0.15"</span>,</span><br><span class="line">		<span class="attr">"event"</span>: &#123;</span><br><span class="line">			<span class="attr">"repository"</span>: &#123;</span><br><span class="line">				<span class="attr">"host"</span>: <span class="string">""</span>,</span><br><span class="line">				<span class="attr">"name"</span>: <span class="string">"index.docker.io/karolisr/webhook-demo"</span>,</span><br><span class="line">				<span class="attr">"tag"</span>: <span class="string">"0.0.15"</span>,</span><br><span class="line">				<span class="attr">"digest"</span>: <span class="string">""</span></span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="attr">"createdAt"</span>: <span class="string">"0001-01-01T00:00:00Z"</span>,</span><br><span class="line">			<span class="attr">"triggerName"</span>: <span class="string">"poll"</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">"message"</span>: <span class="string">"New image is available for release default/wd (0.0.13 -&gt; 0.0.15)."</span>,</span><br><span class="line">		<span class="attr">"currentVersion"</span>: <span class="string">"0.0.13"</span>,</span><br><span class="line">		<span class="attr">"newVersion"</span>: <span class="string">"0.0.15"</span>,</span><br><span class="line">		<span class="attr">"votesRequired"</span>: <span class="number">1</span>,</span><br><span class="line">		<span class="attr">"deadline"</span>: <span class="string">"2017-09-26T09:14:54.979211563+01:00"</span>,</span><br><span class="line">		<span class="attr">"createdAt"</span>: <span class="string">"2017-09-26T09:14:54.980936804+01:00"</span>,</span><br><span class="line">		<span class="attr">"updatedAt"</span>: <span class="string">"2017-09-26T09:14:54.980936824+01:00"</span></span><br><span class="line">	&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="Notifications"><a href="#Notifications" class="headerlink" title="Notifications"></a>Notifications</h2><p>Keel can send notifications on successful or failed deployment updates.  There are several types of notifications - trusted webhooks or Slack, Hipchat messages.</p>
+<p>Notification types:</p>
+<p><strong>Pre-deployment update</strong> - fired before doing update. Can be used to drain running tasks.</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"name"</span>:<span class="string">"preparing to update deployment"</span>,</span><br><span class="line">	<span class="attr">"message"</span>:<span class="string">"Preparing to update deployment &lt;your deployment namespace/name&gt; (gcr.io/webhookrelay/webhook-demo:0.0.10)"</span>,</span><br><span class="line">	<span class="attr">"createdAt"</span>:<span class="string">"2017-07-23T23:51:46.478440258+01:00"</span>,</span><br><span class="line">	<span class="attr">"type"</span>:<span class="string">"preparing deployment update"</span>,</span><br><span class="line">	<span class="attr">"level"</span>:<span class="string">"LevelDebug"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Successful deployment update</strong> - fired after successful update.</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"name"</span>:<span class="string">"deployment update"</span>,</span><br><span class="line">	<span class="attr">"message"</span>:<span class="string">"Successfully updated deployment &lt;your deployment namespace/name&gt; (gcr.io/webhookrelay/webhook-demo:0.0.10)"</span>,</span><br><span class="line">	<span class="attr">"createdAt"</span>:<span class="string">"2017-07-23T23:51:46.478440258+01:00"</span>,</span><br><span class="line">	<span class="attr">"type"</span>:<span class="string">"deployment update"</span>,</span><br><span class="line">	<span class="attr">"level"</span>:<span class="string">"LevelSuccess"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Failed deployment update</strong> - fired after failed event.</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"name"</span>:<span class="string">"deployment update"</span>,</span><br><span class="line">	<span class="attr">"message"</span>:<span class="string">"Deployment &lt;your deployment namespace/name&gt; (gcr.io/webhookrelay/webhook-demo:0.0.10) update failed, error: &lt;error here&gt; "</span>, </span><br><span class="line">	<span class="attr">"createdAt"</span>:<span class="string">"2017-07-23T23:51:46.478440258+01:00"</span>,</span><br><span class="line">	<span class="attr">"type"</span>:<span class="string">"deployment update"</span>,</span><br><span class="line">	<span class="attr">"level"</span>:<span class="string">"LevelError"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Webhook-notifications"><a href="#Webhook-notifications" class="headerlink" title="Webhook notifications"></a>Webhook notifications</h3><p>To enabled webhook notifications provide an endpoint via <strong>WEBHOOK_ENDPOINT</strong> environment variable inside Keel deployment. </p>
+<p>Webhook payload sample:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"name"</span>: <span class="string">"update deployment"</span>,</span><br><span class="line">	<span class="attr">"message"</span>: <span class="string">"Successfully updated deployment default/wd (karolisr/webhook-demo:0.0.10)"</span>,</span><br><span class="line">	<span class="attr">"createdAt"</span>: <span class="string">"2017-07-08T10:08:45.226565869+01:00"</span>	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Slack-notifications"><a href="#Slack-notifications" class="headerlink" title="Slack notifications"></a>Slack notifications</h3><p><img src="/images/slack-notifications.png" alt="Slack notifications"></p>
+<p>First, get a Slack token, info about that can be found in the <a href="https://get.slack.help/hc/en-us/articles/215770388-Create-and-regenerate-API-tokens" target="_blank" rel="noopener">docs</a>. Then, provide token via <strong>SLACK_TOKEN</strong> environment variable. You should also provide <strong>SLACK_CHANNELS</strong> environment variable with a comma separated list of channels where these notifications should be delivered to.</p>
+<p>Keel will be sending messages when deployment updates succeed or fail.</p>
+<h3 id="Hipchat-notifications"><a href="#Hipchat-notifications" class="headerlink" title="Hipchat notifications"></a>Hipchat notifications</h3><p>Coming soon…</p>
+<h3 id="Mattermost-notifications"><a href="#Mattermost-notifications" class="headerlink" title="Mattermost notifications"></a>Mattermost notifications</h3><p><a href="https://about.mattermost.com/" target="_blank" rel="noopener">Mattermost</a> is an open source Slack alternative, it’s written in Go and React.</p>
+<p>If you don’t have a Mattermost server, you can set one up by using Docker:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name mattermost-preview -d --publish 8065:8065 mattermost/mattermost-preview</span><br></pre></td></tr></table></figure>
+<p>Server should be reachable on: <a href="http://localhost:8065/" target="_blank" rel="noopener">http://localhost:8065/</a></p>
+<p>Now, enable “incoming webhooks” in your Mattermost server. Documentation can be found <a href="https://docs.mattermost.com/developer/webhooks-incoming.html" target="_blank" rel="noopener">here</a>:</p>
+<p><img src="/images/mattermost-webhooks.png" alt="Mattermost webhooks"></p>
+<p>Also, you should enable icon and username override so users know that webhooks are coming from Keel:</p>
+<p><img src="/images/mattermost-icon-username.png" alt="Mattermost username and icon override"></p>
+<p>Now, set <code>MATTERMOST_ENDPOINT</code> environment variable for Keel with your Mattermost webhook endpoint:</p>
+<p><img src="/images/mattermost-configuration.png" alt="Mattermost configuration"></p>
+<p>That’s it, Keel notifications for Mattermost enabled:</p>
+<p><img src="/images/mattermost-notification.png" alt="Mattermost notification"></p>
+<blockquote>
+<p>If you want to override bot’s username, you can supply <code>MATTERMOST_USERNAME=somethingelse</code> environment variable.</p>
+</blockquote>
+<h3 id="Notification-levels"><a href="#Notification-levels" class="headerlink" title="Notification levels"></a>Notification levels</h3><p>Set notification levels via <code>NOTIFICATION_LEVEL</code> environment variable. Available levels: debug, info, success, warn, error, fatal. This setting defaults to <code>info</code>.</p>
+<h3 id="Overriding-default-channels-per-deployment"><a href="#Overriding-default-channels-per-deployment" class="headerlink" title="Overriding default channels per deployment"></a>Overriding default channels per deployment</h3><p>Some notification providers such as Slack and Hipchat allow apps to send notifications to multiple channels.</p>
+<p>For standard Kubernetes deployments use annotation with channels separated by commas: <code>keel.sh/notify=channelName1,channelName2</code>.</p>
+<p><img src="/images/notify-per-deployment.png" alt="notifications per deployment"></p>
+<p>For Helm chart please specify <code>notificationChannels</code> string list to Keel config section in <em>values.yaml</em>:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">notificationChannels:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">chan1</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">chan2</span></span><br></pre></td></tr></table></figure>
+<p>Your <em>values.yaml</em> should look like this:</p>
+<p><img src="/images/notify-per-chart.png" alt="notifications per chart"></p>
+
+  
+    <div class="guide-links">
+      
+      
+        <span style="float: right;"><a href="/v1/guide/dev-providers.html">Providers in Depth</a> →</span>
+      
+    </div>
+    
+  <div class="footer">  
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/keel-hq/keel-website/blob/master/src/v1/guide/documentation.md" target="_blank">
+      Edit this page on GitHub!
+    </a>
+  </div>
+</div>
+
+                  
+        </div>
+        <script src="/js/smooth-scroll.min.js"></script>
+                      
+
+      <!-- main custom script for sidebars, version selects etc. -->
+      <script src="/js/css.escape.js"></script>
+      <script src="/js/jquery.min.js"></script>
+      <script src="/js/common.js"></script>                          
+        
+      <!-- fastclick -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          FastClick.attach(document.body)
+        }, false)
+      </script>
+  </body>
+
+  </html>
