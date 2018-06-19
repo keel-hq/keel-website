@@ -503,6 +503,8 @@ Slack - commands like:
 
 Make sure you have set `export SLACK_TOKEN=<your slack token here>` environment variable for Keel deployment.
 
+If you wish to specify a special channel for approval requests, supply `SLACK_APPROVALS_CHANNEL=<approvals channel name>` environment variable and then invite Keel bot to that channel.
+
 ### Configuring via Kubernetes deployments
 
 The only required configuration for Kubernetes deployment to enable approvals is to add `keel.sh/approvals: "1"` with a number (string! as the underlying type is map[string]string) of required approvals.
@@ -565,11 +567,12 @@ Set name to Keel
 
 ![Slack bot name](/images/slack-bot-name.png)
 
+
 #### Step 2: supplying token to Keel
 
 Use provided token as an environment variable in Keel's deployment:
 
-```SLACK_TOKEN=token```            
+`SLACK_TOKEN=token`
 
 ### Approving through Slack example
 
