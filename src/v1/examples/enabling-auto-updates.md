@@ -30,7 +30,7 @@ metadata:
   name: wd
   namespace: default
   labels: 
-      name: "wd"  
+      name: "wd"
 spec:
   replicas: 1
   template:
