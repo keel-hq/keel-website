@@ -44,6 +44,8 @@ func main() {
 }
 ```
 
+Dockerfile and Kubernetes deployment files can be found here: https://github.com/keel-hq/push-workflow-example. 
+
 Commit your code and push to remote:
 
 ![Git push](/images/examples/git-push.png)
