@@ -1,15 +1,15 @@
 ---
 title: Setting up "push to deploy" workflow
-description: Tutorial on how to setup a push to deploy workflow for your apps
+description: Tutorial on how to set up a push to deploy workflow for your apps
 type: examples
 order: 2
 ---
 
-In this tutorial we will configure several tools to enable automated Kubernetes updates on Git push. This workflow is mostly useful when developing apps for Kubernetes. For production we recommend tag approach where a tagged release would trigger an image build and Keel update policies would increase the version.
+In this tutorial, we will configure several tools to enable automated Kubernetes updates on Git push. This workflow is mostly useful when developing apps for Kubernetes. For production, we recommend tag approach where a tagged release would trigger an image build and Keel update policies would increase the version.
 
 ![Keel Force Workflow](/images/examples/force-workflow.png)
 
-Once workflow is ready, any push to the master branch (or merge requests from develop/feature branches) will update your app running in Kubernetes.
+Once a workflow is ready, any push to the master branch (or merge requests from develop/feature branches) will update your app running in Kubernetes.
 
 In this tutorial we will use:
 
@@ -28,19 +28,19 @@ Our example app will be a really really simple one:
 package main
 
 import (
-	"fmt"
-	"log"
-	"net/http"
+    "fmt"
+    "log"
+    "net/http"
 )
 
 var version = "v0"
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Welcome to my website! Version %s", version)
-	})
-	fmt.Printf("App is starting, version: %s \n", version)
-	log.Fatal(http.ListenAndServe(":8500", nil))
+    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprintf(w, "Welcome to my website! Version %s", version)
+    })
+    fmt.Printf("App is starting, version: %s \n", version)
+    log.Fatal(http.ListenAndServe(":8500", nil))
 }
 ```
 
@@ -55,7 +55,7 @@ In this step we will configure Webhook Relay to forward DockerHub webhooks our i
 Let's prepare configuration:
 
 ```bash
-# using localhost as webhookrelayd agent will be running as a sidecar
+# using localhost as a webhookrelayd agent will be running as a sidecar
 # webhookrelayd sidecar for keel comes with preconfigured bucket name 'dockerhub'
 $ relay forward -b dockerhub --no-agent http://localhost:9300
 Forwarding configuration created: 
@@ -67,7 +67,7 @@ We will need that long URL for our next step when configuring DockerHub webhooks
 
 ## Configure DockerHub (code repository + webhook)
 
-Now, we need to tell DockerHub to build a new image on every GitHub push to the master branch. First, go to https://cloud.docker.com, then `Repositories` and click on `Create` button. Once you have created repository, link it to your GitHub account and click on `Configure Automated Builds`:
+Now, we need to tell DockerHub to build a new image on every GitHub push to the master branch. First, go to https://cloud.docker.com, then `Repositories` and click on `Create` button. Once you have created the repository, link it to your GitHub account and click on `Configure Automated Builds`:
 
 ![configure automated builds](/images/examples/configure-autobuild.png)
 
@@ -80,7 +80,7 @@ Ensure that `autobuild` is switched on and click on "Save and Build". You will g
 
 ![configure automated builds](/images/examples/docker-build-config.png)
 
-Also, we will need to setup DockerHub webhooks to Keel via Webhook Relay. For some reason that configuration is not available on https://cloud.docker.com and we have to go to https://hub.docker.com:
+Also, we will need to setup DockerHub webhooks to Keel via Webhook Relay. For some reason, that configuration is not available on https://cloud.docker.com and we have to go to https://hub.docker.com:
 
 ![dockerhub webhooks](/images/examples/dockerhub-webhook.png)
 
@@ -115,7 +115,7 @@ and if there's no RBAC in your cluster, use:
 kubectl create -f https://raw.githubusercontent.com/keel-hq/keel/master/deployment/deployment-norbac-whr-sidecar.yaml
 ```
 
-> TIP: Feel free to save deployment manifest locally and add things like Slack or other chat provider notifications, approvals and so on. For the sake of simplicy we are omitting those steps in this tutorial.
+> TIP: Feel free to save deployment manifest locally and add things like Slack or other chat provider notifications, approvals and so on. For the sake of simplicity we are omitting those steps in this tutorial.
 
 So, when we create it Kubernetes should complain a bit about already existing namespace but that's expected:
 
@@ -196,23 +196,23 @@ Now, update your Go program's version string to `v1`:
 package main
 
 import (
-	"fmt"
-	"log"
-	"net/http"
+    "fmt"
+    "log"
+    "net/http"
 )
 
 var version = "v1"
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Welcome to my website! Version %s", version)
-	})
-	fmt.Printf("App is starting, version: %s \n", version)
-	log.Fatal(http.ListenAndServe(":8500", nil))
+    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprintf(w, "Welcome to my website! Version %s", version)
+    })
+    fmt.Printf("App is starting, version: %s \n", version)
+    log.Fatal(http.ListenAndServe(":8500", nil))
 }
 ```
 
-Commit and push. In a minute or two (depending on how fast DockerHub can build your image) our app should be updated. Since it's using webhooks, update should be pretty much instantaneous. 
+Commit and push. In a minute or two (depending on how fast DockerHub can build your image) our app should be updated. Since it's using webhooks, an update should be pretty much instantaneous. 
 
 If you visit Webhook Relay `dockerhub` bucket's page, it should show relayed webhook:
 
@@ -240,8 +240,8 @@ App is starting, version: v1
 
 ## Conclusion
 
-While setting up Keel and Webhook Relay can take several of your precious minutes away, it saves enormous amount of time later. Not only you get an instant update to your applications based on policies but you also ensure that you won't update wrong cluster or environment by mistake. And, of course, you won't even need to use `kubectl` for your application updates. 
+While setting up Keel and Webhook Relay can take several of your precious minutes away, it saves an enormous amount of time later. Not only you get an instant update to your applications based on policies but you also ensure that you won't update wrong cluster or environment by mistake. And, of course, you won't even need to use `kubectl` for your application updates. 
 
-Once Keel is setup in your cluster in can manage many (all) of your applications. When you add your next app to the cluster, just specify the policy and point DockerHub webhook to the same Webhook Relay endpoint. Keel will filter out relevant deployments based on webhook payload and update them.
+Once Keel is set up in your cluster in can manage many (all) of your applications. When you add your next app to the cluster, just specify the policy and point DockerHub webhook to the same Webhook Relay endpoint. Keel will filter out relevant deployments based on webhook payload and update them.
 
 If you have any questions or find parts of this tutorial incorrect, please raise an issue on Keel's repository [here](https://github.com/keel-hq/keel/issues)
