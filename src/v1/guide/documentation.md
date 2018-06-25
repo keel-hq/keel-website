@@ -724,6 +724,45 @@ __Failed deployment update__ - fired after failed event.
 }
 ```
 
+### Release notes in notifications
+
+You can optionally set a release notes link (or anything that's allowed by `annotation` value or Helm chart value) in your configuration.
+
+If you are using Kubernetes, use annotation `keel.sh/releaseNotes`:
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata: 
+  name: wd
+  namespace: default
+  labels: 
+      name: "wd"
+      keel.sh/policy: minor
+  annotations:
+      keel.sh/releaseNotes: "https://github.com/keel-hq/keel/releases"
+```
+
+If you are using Helm, your Keel config now accepts `releaseNotes`:
+
+```yaml
+name: app1
+image:
+  repository: gcr.io/v2-namespace/hello-world
+  tag: 1.1.0
+
+keel:  
+  policy: force  
+  trigger: poll  
+  images:
+    - repository: image.repository
+      tag: image.tag
+      releaseNotes: https://github.com/keel-hq/keel/releases			
+
+```
+
+Release notes will be sent with a successful update.
+
 ### Webhook notifications
 
 To enabled webhook notifications provide an endpoint via __WEBHOOK_ENDPOINT__ environment variable inside Keel deployment. 
