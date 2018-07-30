@@ -326,7 +326,7 @@
 <li><strong>major</strong>: update major &amp; minor &amp; patch versions (same as <strong>all</strong>)</li>
 <li><strong>minor</strong>: update only minor &amp; patch versions (ignores major)</li>
 <li><strong>patch</strong>: update only patch versions (ignores minor and major versions)</li>
-<li><strong>force</strong>: force update even if tag is not semver, ie: <code>latest</code>, optional label: <strong>force-match=true</strong> which will enforce that only the same tag will trigger force update.</li>
+<li><strong>force</strong>: force update even if tag is not semver, ie: <code>latest</code>, optional label: <strong>keel.sh/match-tag=true</strong> which will enforce that only the same tag will trigger force update.</li>
 </ul>
 <h3 id="Pre-release-tags"><a href="#Pre-release-tags" class="headerlink" title="Pre-release tags"></a>Pre-release tags</h3><p>According to semver (<a href="http://semver.org/" target="_blank" rel="noopener">http://semver.org/</a>) spec, version tags can have additional metadata such as <code>1.0.0-dev</code>, <code>1.0.0-prod</code>, etc. Keel deals with semver tags by only allowing updates with the same version metadata.</p>
 <p>Example:</p>
