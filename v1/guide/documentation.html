@@ -120,13 +120,13 @@
   </ul>
 </li>
 
-<!-- 
-<li>
+
+<!-- <li>
   <a href="/blog/" class="nav-link team">Blog</a>
-</li>
- <li>
-  <a href="/v1/guide/team.html" class="nav-link team">Team</a>
 </li> -->
+<li>
+  <a href="/support/index.html" class="nav-link team">Support</a>
+</li>
 <li>
   <a class="nav-link team" target="_blank" href="https://github.com/keel-hq/keel">Github →</a>
 </li>
@@ -184,13 +184,13 @@
   </ul>
 </li>
 
-<!-- 
-<li>
+
+<!-- <li>
   <a href="/blog/" class="nav-link team">Blog</a>
-</li>
- <li>
-  <a href="/v1/guide/team.html" class="nav-link team">Team</a>
 </li> -->
+<li>
+  <a href="/support/index.html" class="nav-link team">Support</a>
+</li>
 <li>
   <a class="nav-link team" target="_blank" href="https://github.com/keel-hq/keel">Github →</a>
 </li>
@@ -505,7 +505,7 @@
 <h3 id="Configuring-via-Kubernetes-deployments"><a href="#Configuring-via-Kubernetes-deployments" class="headerlink" title="Configuring via Kubernetes deployments"></a>Configuring via Kubernetes deployments</h3><p>The only required configuration for Kubernetes deployment to enable approvals is to add <code>keel.sh/approvals: &quot;1&quot;</code> with a number (string! as the underlying type is map[string]string) of required approvals.</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">extensions/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span> </span><br><span class="line"><span class="attr">  name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">  labels:</span> </span><br><span class="line"><span class="attr">      name:</span> <span class="string">"wd"</span></span><br><span class="line">      <span class="string">keel.sh/policy:</span> <span class="string">all</span></span><br><span class="line">      <span class="string">keel.sh/trigger:</span> <span class="string">poll</span>      </span><br><span class="line">      <span class="string">keel.sh/approvals:</span> <span class="string">"1"</span></span><br></pre></td></tr></table></figure>
 <h3 id="Configuring-via-Helm-charts"><a href="#Configuring-via-Helm-charts" class="headerlink" title="Configuring via Helm charts"></a>Configuring via Helm charts</h3><p>To enable approvals for a Helm chart update Keel config section in <code>values.yaml</code> with a required number of approvals:</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">replicaCount:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">image:</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="string">karolisr/webhook-demo</span></span><br><span class="line"><span class="attr">  tag:</span> <span class="string">"0.0.13"</span></span><br><span class="line"><span class="attr">  pullPolicy:</span> <span class="string">IfNotPresent</span> </span><br><span class="line"><span class="attr">service:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">webhookdemo</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">ClusterIP</span></span><br><span class="line"><span class="attr">  externalPort:</span> <span class="number">8090</span></span><br><span class="line"><span class="attr">  internalPort:</span> <span class="number">8090</span></span><br><span class="line"></span><br><span class="line"><span class="attr">keel:</span></span><br><span class="line">  <span class="comment"># keel policy (all/major/minor/patch/force)</span></span><br><span class="line"><span class="attr">  policy:</span> <span class="string">all</span></span><br><span class="line">  <span class="comment"># trigger type, defaults to events such as pubsub, webhooks</span></span><br><span class="line"><span class="attr">  trigger:</span> <span class="string">poll</span></span><br><span class="line">  <span class="comment"># polling schedule</span></span><br><span class="line"><span class="attr">  pollSchedule:</span> <span class="string">"@every 1m"</span></span><br><span class="line">  <span class="comment"># approvals required to proceed with an update</span></span><br><span class="line"><span class="attr">  approvals:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># images to track and update</span></span><br><span class="line"><span class="attr">  images:</span></span><br><span class="line"><span class="attr">    - repository:</span> <span class="string">image.repository</span></span><br><span class="line"><span class="attr">      tag:</span> <span class="string">image.tag</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">replicaCount:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">image:</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="string">karolisr/webhook-demo</span></span><br><span class="line"><span class="attr">  tag:</span> <span class="string">"0.0.13"</span></span><br><span class="line"><span class="attr">  pullPolicy:</span> <span class="string">IfNotPresent</span> </span><br><span class="line"><span class="attr">service:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">webhookdemo</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">ClusterIP</span></span><br><span class="line"><span class="attr">  externalPort:</span> <span class="number">8090</span></span><br><span class="line"><span class="attr">  internalPort:</span> <span class="number">8090</span></span><br><span class="line"></span><br><span class="line"><span class="attr">keel:</span></span><br><span class="line">  <span class="comment"># keel policy (all/major/minor/patch/force)</span></span><br><span class="line"><span class="attr">  policy:</span> <span class="string">all</span></span><br><span class="line">  <span class="comment"># trigger type, defaults to events such as pubsub, webhooks</span></span><br><span class="line"><span class="attr">  trigger:</span> <span class="string">poll</span></span><br><span class="line">  <span class="comment"># polling schedule</span></span><br><span class="line"><span class="attr">  pollSchedule:</span> <span class="string">"@every 1m"</span></span><br><span class="line">  <span class="comment"># approvals required to proceed with an update</span></span><br><span class="line"><span class="attr">  approvals:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># approvals deadline in hours</span></span><br><span class="line"><span class="attr">  approvalDeadline:</span> <span class="number">24</span> </span><br><span class="line">  <span class="comment"># images to track and update</span></span><br><span class="line"><span class="attr">  images:</span></span><br><span class="line"><span class="attr">    - repository:</span> <span class="string">image.repository</span></span><br><span class="line"><span class="attr">      tag:</span> <span class="string">image.tag</span></span><br></pre></td></tr></table></figure>
 <h3 id="Configuring-approvals-with-Slack"><a href="#Configuring-approvals-with-Slack" class="headerlink" title="Configuring approvals with Slack"></a>Configuring approvals with Slack</h3><p>Slack configuration can be sometimes quite confusing. If something has changed, please create an issue.</p>
 <h4 id="Step-1-adding-bot-app-and-getting-token"><a href="#Step-1-adding-bot-app-and-getting-token" class="headerlink" title="Step 1: adding bot app and getting token"></a>Step 1: adding bot app and getting token</h4><p>Go to your Slack apps page: https://[your-slack-community].slack.com/apps/A0F7YS25R-bots?page=1</p>
 <p><img src="/images/slack-bots.png" alt="Slack bots"></p>
