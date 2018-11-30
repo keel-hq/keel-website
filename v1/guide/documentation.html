@@ -314,8 +314,8 @@
 <h2 id="Policies"><a href="#Policies" class="headerlink" title="Policies"></a>Policies</h2><p>Use policies to define when you want your application to be updated. Providers can have different mechanisms of getting configuration for your application, but policies are consistent across all of them. Following <a href="http://semver.org/" target="_blank" rel="noopener">semver</a><br>best practices allows you to safely automate application updates.</p>
 <p>Available policies:</p>
 <ul>
-<li><strong>all</strong>: update whenever there is a version bump</li>
-<li><strong>major</strong>: update major &amp; minor &amp; patch versions (same as <strong>all</strong>)</li>
+<li><strong>all</strong>: update whenever there is a version bump or a new prerelease created (ie: <code>1.0.0</code> -&gt; <code>1.0.1-rc1</code>)</li>
+<li><strong>major</strong>: update major &amp; minor &amp; patch versions</li>
 <li><strong>minor</strong>: update only minor &amp; patch versions (ignores major)</li>
 <li><strong>patch</strong>: update only patch versions (ignores minor and major versions)</li>
 <li><strong>force</strong>: force update even if tag is not semver, ie: <code>latest</code>, optional label: <strong>keel.sh/match-tag=true</strong> which will enforce that only the same tag will trigger force update.</li>
