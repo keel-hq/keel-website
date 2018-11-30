@@ -327,7 +327,13 @@
 <li><strong>minor</strong>: update only minor &amp; patch versions (ignores major)</li>
 <li><strong>patch</strong>: update only patch versions (ignores minor and major versions)</li>
 <li><strong>force</strong>: force update even if tag is not semver, ie: <code>latest</code>, optional label: <strong>keel.sh/match-tag=true</strong> which will enforce that only the same tag will trigger force update.</li>
+<li><strong>glob</strong>: use wildcards to match versions, example:</li>
 </ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">extensions/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span> </span><br><span class="line"><span class="attr">  name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">  labels:</span> </span><br><span class="line"><span class="attr">      name:</span> <span class="string">"wd"</span></span><br><span class="line"><span class="attr">  annotations:</span></span><br><span class="line">      <span class="string">keel.sh/policy:</span> <span class="string">"glob:build-*"</span>  <span class="comment"># &lt;- build-1, build-2, build-foo will match this.</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>regexp</strong>: use regular expressions to match versions, example:</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">extensions/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span> </span><br><span class="line"><span class="attr">  name:</span> <span class="string">wd</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">  labels:</span> </span><br><span class="line"><span class="attr">      name:</span> <span class="string">"wd"</span></span><br><span class="line"><span class="attr">  annotations:</span></span><br><span class="line">      <span class="string">keel.sh/policy:</span> <span class="string">"regexp:^([a-zA-Z]+)$"</span></span><br></pre></td></tr></table></figure>
 <h3 id="Pre-release-tags"><a href="#Pre-release-tags" class="headerlink" title="Pre-release tags"></a>Pre-release tags</h3><p>According to semver (<a href="http://semver.org/" target="_blank" rel="noopener">http://semver.org/</a>) spec, version tags can have additional metadata such as <code>1.0.0-dev</code>, <code>1.0.0-prod</code>, etc. Keel deals with semver tags by only allowing updates with the same version metadata.</p>
 <p>Example:</p>
 <ul>
@@ -360,7 +366,7 @@
 </blockquote>
 <p>Add labels:</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">keel.sh/policy=force # add this to enable updates of non-semver tags</span><br><span class="line">keel.sh/trigger=poll</span><br></pre></td></tr></table></figure>
-<p>To specify custom polling schedule, check <a href="!--￼27--&gt;#cron-expression-format">cron expression format</a></p>
+<p>To specify custom polling schedule, check <a href="!--￼29--&gt;#cron-expression-format">cron expression format</a></p>
 <blockquote>
 <p><strong>Note</strong> that even if polling trigger is set - webhooks or pubsub events can still trigger updates</p>
 </blockquote>

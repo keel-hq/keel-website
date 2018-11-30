@@ -345,13 +345,20 @@
 <h3 id="Uninstalling-Keel"><a href="#Uninstalling-Keel" class="headerlink" title="Uninstalling Keel"></a>Uninstalling Keel</h3><p>To remove Keel from your system, simply use existing deployment file:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl delete -f deployment-rbac.yaml</span><br></pre></td></tr></table></figure>
 <p>Or delete the namespace.</p>
-<h2 id="Deploying-with-Helm"><a href="#Deploying-with-Helm" class="headerlink" title="Deploying with Helm"></a>Deploying with Helm</h2><p>Helm chart is available on <a href="https://github.com/keel-hq/keel/tree/master/chart/keel" target="_blank" rel="noopener">Github here</a>.</p>
-<h3 id="Installing-the-Chart-with-Kubernetes-provider-support"><a href="#Installing-the-Chart-with-Kubernetes-provider-support" class="headerlink" title="Installing the Chart with Kubernetes provider support"></a>Installing the Chart with Kubernetes provider support</h3><p>Clone Keel repo (you will need the chart):</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/keel-hq/keel.git &amp;&amp; cd keel</span><br></pre></td></tr></table></figure>
-<p>Install through Helm (with Helm provider enabled):</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">helm upgrade --install keel --namespace=kube-system ./chart/keel/ --<span class="built_in">set</span> helmProvider.enabled=<span class="string">"true"</span> --<span class="built_in">set</span> rbac.enabled=<span class="string">"true"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Deploying-with-Helm"><a href="#Deploying-with-Helm" class="headerlink" title="Deploying with Helm"></a>Deploying with Helm</h2><p>Prerequisites:</p>
+<ul>
+<li>Helm</li>
+<li>Kubernetes</li>
+</ul>
+<p>You need to add this Chart repo to Helm:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">helm repo add keel-charts https://charts.keel.sh </span><br><span class="line">helm repo update</span><br></pre></td></tr></table></figure>
+<p>Install through Helm (with Helm provider enabled by default):</p>
+<blockquote>
+<p>Keel must be installed into the same namespace as Tiller, typically <code>kube-system</code></p></blockquote><p></p>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">helm upgrade --install keel --namespace=kube-system keel-charts/keel</span><br></pre></td></tr></table></figure>
 <p>If you work mostly with regular Kubernetes manifests, you can install Keel without Helm provider support:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">helm upgrade --install keel --namespace=keel ./chart/keel/ --<span class="built_in">set</span> helmProvider.enabled=<span class="string">"false"</span> --<span class="built_in">set</span> rbac.enabled=<span class="string">"true"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">helm upgrade --install keel --namespace=keel keel-charts/keel --set helmProvider.enabled=&quot;false&quot;</span><br></pre></td></tr></table></figure>
 <h3 id="Setting-up-Helm-release-to-be-automatically-updated-by-Keel"><a href="#Setting-up-Helm-release-to-be-automatically-updated-by-Keel" class="headerlink" title="Setting up Helm release to be automatically updated by Keel"></a>Setting up Helm release to be automatically updated by Keel</h3><p>Add the following to your app’s <code>values.yaml</code> file and do <code>helm upgrade ...</code>:</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">keel:</span></span><br><span class="line">  <span class="comment"># keel policy (all/major/minor/patch/force)</span></span><br><span class="line"><span class="attr">  policy:</span> <span class="string">all</span></span><br><span class="line">  <span class="comment"># trigger type, defaults to events such as pubsub, webhooks</span></span><br><span class="line"><span class="attr">  trigger:</span> <span class="string">poll</span></span><br><span class="line">  <span class="comment"># polling schedule</span></span><br><span class="line"><span class="attr">  pollSchedule:</span> <span class="string">"@every 3m"</span></span><br><span class="line">  <span class="comment"># images to track and update</span></span><br><span class="line"><span class="attr">  images:</span></span><br><span class="line"><span class="attr">    - repository:</span> <span class="string">image.repository</span> <span class="comment"># it must be the same names as your app's values</span></span><br><span class="line"><span class="attr">      tag:</span> <span class="string">image.tag</span> <span class="comment"># it must be the same names as your app's values</span></span><br></pre></td></tr></table></figure>
 <p>The same can be applied with <code>--set</code> flag without using <code>values.yaml</code> file:</p>
