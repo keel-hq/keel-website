@@ -14,11 +14,40 @@ best practices allows you to safely automate application updates.
 
 Available policies:
 
--  **all**: update whenever there is a version bump
--  **major**: update major & minor & patch versions (same as __all__)
+-  **all**: update whenever there is a version bump or a new prerelease created (ie: `1.0.0` -> `1.0.1-rc1`)
+-  **major**: update major & minor & patch versions
 -  **minor**: update only minor & patch versions (ignores major)
 -  **patch**: update only patch versions (ignores minor and major versions)
--  **force**: force update even if tag is not semver, ie: `latest`, optional label: **force-match=true** which will enforce that only the same tag will trigger force update.
+-  **force**: force update even if tag is not semver, ie: `latest`, optional label: **keel.sh/match-tag=true** which will enforce that only the same tag will trigger force update.
+-  **glob**: use wildcards to match versions, example:
+
+```yaml
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata: 
+  name: wd
+  namespace: default
+  labels: 
+      name: "wd"
+  annotations:
+      keel.sh/policy: "glob:build-*"  # <- build-1, build-2, build-foo will match this. 
+```
+
+- **regexp**: use regular expressions to match versions, example:
+
+```yaml
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata: 
+  name: wd
+  namespace: default
+  labels: 
+      name: "wd"
+  annotations:
+      keel.sh/policy: "regexp:^([a-zA-Z]+)$"
+```
 
 ### Pre-release tags
 
@@ -376,17 +405,15 @@ Available triggers:
   * Native Webhooks
   * DockerHub Webhooks
   * Quay Webhooks
+  * Harbor webhooks
+  * Gitlab webhooks
   * Receiving webhooks without public endpoint
 - Google Cloud GCR registry
 - Polling
 
 ### Webhooks
 
-Webhooks are "user-defined HTTP callbacks". They are usually triggered by some event, such as pushing image to a registry.
-
-####  Native Webhooks
-
-Native webhooks (simplified version) are accepted at `/v1/webhooks/native` endpoint with a payload that has __name__ and __tag__ fields: 
+Webhooks are "user-defined HTTP callbacks". They are usually triggered by some event, such as pushing image to a registry. Native webhooks (simplified version) are accepted at `/v1/webhooks/native` endpoint with a payload that has __name__ and __tag__ fields: 
 
 ```json
 {
@@ -395,7 +422,9 @@ Native webhooks (simplified version) are accepted at `/v1/webhooks/native` endpo
 }
 ```
 
-#### DockerHub Webhooks
+> Keel by default runs HTTP server on port 9300. Create a service and either expose it to the internet or use https://webhookrelay.com to receive webhooks.
+
+### DockerHub Webhooks
 
 DockerHub uses webhooks to inform 3rd party systems about repository related events such as pushed image.
 
@@ -405,25 +434,32 @@ to `/v1/webhooks/dockerhub` endpoint. Any number of repositories
 can send events to this endpoint.
 
 
-#### Quay Webhooks 
+### Quay Webhooks 
 
 Documentation on how to setup Quay webhooks for __Repository Push__ events is available here: [https://docs.quay.io/guides/notifications.html](https://docs.quay.io/guides/notifications.html). These webhooks should be delivered to `/v1/webhooks/quay` endpoint. Any number of repositories 
 can send events to this endpoint.
 
 
-#### Azure Webhooks
+### Azure Webhooks
 
 Documentation on how to setup Azure webhooks is available here: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-webhook. Azure webhooks should be delivered to `/v1/webhooks/azure` endpoint.
 
+### Harbor webhooks
 
-#### Receiving webhooks without public endpoint
+Keel supports https://github.com/goharbor/harbor webhooks. Harbor webhooks should be delivered to `/v1/webhooks/registry` endpoint. Harbor webhooks are based on [Docker registry notifications](https://docs.docker.com/registry/notifications/).
+
+### Gitlab webhooks
+
+Keel supports Gitlab registry notifications also known as webhooks (https://docs.gitlab.com/ee/administration/container_registry.html#configure-container-registry-notifications). Gitlab webhooks should be delivered to `/v1/webhooks/registry` endpoint. Gitlab webhooks are based on [Docker registry notifications](https://docs.docker.com/registry/notifications/).
+
+### Receiving webhooks without public endpoint
 
 If you don't want to expose your Keel service - recommended solution is [https://webhookrelay.com/](https://webhookrelay.com/) which can deliver webhooks to your internal Keel service through a sidecar container.
 
 Example sidecar container configuration for your `deployments.yaml`:
 
 ```yaml
-        - image: webhookrelay/webhookrelayd:0.6.0
+        - image: webhookrelay/webhookrelayd:latest
           name: webhookrelayd          
           env:                         
             - name: KEY
@@ -591,6 +627,8 @@ keel:
   pollSchedule: "@every 1m"
   # approvals required to proceed with an update
   approvals: 1
+  # approvals deadline in hours
+  approvalDeadline: 24 
   # images to track and update
   images:
     - repository: image.repository

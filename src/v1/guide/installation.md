@@ -72,24 +72,31 @@ Or delete the namespace.
 
 ## Deploying with Helm
 
-Helm chart is available on [KubeApps](https://kubeapps.com/charts/stable/keel) stable charts and   [Github here](https://github.com/keel-hq/keel/tree/master/chart/keel).
+Prerequisites:
+
+- Helm
+- Kubernetes
 
 
-### Installing the Chart with Kubernetes provider support
-
-Docker image _polling_ and _Kubernetes_ provider are set by default, then Kubernetes _deployments_ can be upgraded when new Docker image is available:
+You need to add this Chart repo to Helm:
 
 ```bash
-helm repo up
-helm upgrade --install keel stable/keel
+helm repo add keel-charts https://charts.keel.sh 
+helm repo update
 ```
 
-If you want to install the Chart with Helm provider support:
+Install through Helm (with Helm provider enabled by default):
 
-Docker image _polling_ is set by default, but we need to enable _Helm provider_ support, then Helm _releases_ can be upgraded when new Docker image is available:
+> Keel must be installed into the same namespace as Tiller, typically <code>kube-system</code></p></blockquote>
 
-```bash
-helm upgrade --install keel stable/keel --set helmProvider.enabled="true"
+```
+helm upgrade --install keel --namespace=kube-system keel-charts/keel
+```
+
+If you work mostly with regular Kubernetes manifests, you can install Keel without Helm provider support:
+
+```
+helm upgrade --install keel --namespace=keel keel-charts/keel --set helmProvider.enabled="false" 
 ```
 
 ### Setting up Helm release to be automatically updated by Keel
@@ -144,7 +151,7 @@ The following table lists has the main configurable parameters (polling, trigger
 | polling.enabled                   | Docker registries polling              | `true`                                                    |
 | helmProvider.enabled              | Enable/disable Helm provider           | `false`                                                   |
 | gcr.enabled                       | Enable/disable GCR Registry            | `false`                                                   |
-| gcr.projectID                     | GCP Project ID GCR belongs to          |                                                           |
+| gcr.projectId                     | GCP Project ID GCR belongs to          |                                                           |
 | gcr.pubsub.enabled                | Enable/disable GCP Pub/Sub trigger     | `false`                                                   |
 | webhook.enabled                   | Enable/disable Webhook Notification    | `false`                                                   |
 | webhook.endpoint                  | Remote webhook endpoint                |                                                           |
