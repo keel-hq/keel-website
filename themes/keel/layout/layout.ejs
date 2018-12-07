@@ -47,8 +47,12 @@
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
 
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700|Arimo:400,700" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="/scss/style.css"> -->
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
     <!-- main page styles -->
-    <%- css(isIndex ? 'css/index' : 'css/page') %>
+    <%- css(isIndex ? 'scss/style.css' : 'css/page') %>
 
     <!-- this needs to be loaded before guide's inline scripts -->      
     <script>window.PAGE_TYPE = "<%- page.type %>"</script>    
@@ -66,13 +70,14 @@
     </script>    
   </head>
 
-  <body class="<%- isIndex ? '' : 'docs' -%>">
-    <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
-      <a class="menu-button"></a>
-      <a class="logo" href="/"></a>
-    </div>
-    <%- partial('partials/header') %>
+  <body class="<%- isIndex ? 'is-boxed has-animations' : 'docs' -%>">    
+      <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
+          <a class="menu-button"></a>
+          <a class="logo" href="/"></a>
+        </div>
       <% if (!isIndex) { %>
+        
+        <%- partial('partials/header') %>
         <div id="main" class="fix-sidebar">
           <% if (page.blog_index) { %>
             <%- partial('partials/blog') %>
@@ -81,14 +86,17 @@
                   <% } %>
         </div>
         <script src="<%- url_for("/js/smooth-scroll.min.js") %>"></script>
+              <!-- main custom script for sidebars, version selects etc. -->
+      <script src="<%- url_for("/js/css.escape.js") %>"></script>
+      <script src="<%- url_for("/js/jquery.min.js") %>"></script>
+      <script src="<%- url_for("/js/common.js") %>"></script>    
+
         <% } else { %>
           <%- body %>
         <% } %>              
 
-      <!-- main custom script for sidebars, version selects etc. -->
-      <script src="<%- url_for("/js/css.escape.js") %>"></script>
-      <script src="<%- url_for("/js/jquery.min.js") %>"></script>
-      <script src="<%- url_for("/js/common.js") %>"></script>                          
+                      
+      <script src="<%- url_for("/js/main.js") %>"></script>                          
         
       <!-- fastclick -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>

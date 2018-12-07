@@ -1,249 +1,458 @@
-<div class="sidebar">
-  <div class="sidebar-inner-index">
-    <ul class="main-menu">
-      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
-    </ul>
-  </div>
-</div>
 
-<div id="hero">
-  <div class="inner">
-    <div class="left">
-      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
-    </div><div class="right">
-      <h2 class="vue">Keel</h2>
-      <h1>
-        Continuous Delivery
-        <br>                
-        For Kubernetes
-      </h1>
-      <p>
-        <a class="button" href="<%- url_for("/v1/guide") %>">LEARN MORE</a>
-        <a class="button white" href="<%- url_for("/v1/guide/installation.html") %>">INSTALL</a>        
-      </p>
-    </div>
-  </div>
-</div>
+  <div class="body-wrap boxed-container">
+      <header class="site-header">
+          <div class="container">
+              <div class="site-header-inner">
+                  <div class="brand header-brand">
+                      <!-- <h1 class="m-0">
+                          <a href="#">
+                              <img src="/images/logo_32x32.png" alt="Keel logo">
+                          </a>
+                      </h1> -->
+                  </div>
+              </div>
+          </div>
+      </header>
 
-<div class="shells">
-  <div class="inner">
-    <div class="left">
-      <div class="shell">
-        <div class="upper">
-          <div class="buttons">
-            <div class="button red">
-              <div class="inner-light-top"></div>
-              <div class="inner-light-bottom"></div>
-              <div class="inner-dark-top"></div>
-            </div>
-            <div class="button yellow">
-              <div class="inner-light-top"></div>
-              <div class="inner-dark-top"></div>
-              <div class="inner-light-bottom"></div>
-            </div>
-            <div class="button green">
-              <div class="inner-light-top"></div>
-              <div class="inner-dark-top"></div>
-              <div class="inner-light-bottom"></div>
+      <main>
+          <section class="hero">
+      <div class="hero-left-decoration is-revealing"></div>
+      <div class="hero-right-decoration is-revealing"></div>
+              <div class="container">
+                  <div class="hero-inner">
+          <div class="hero-copy">
+            <h1 class="hero-title mt-0 is-revealing">Continuous Delivery for Kubernetes</h1>
+            <p class="hero-paragraph is-revealing">Open Source. Cloud Native. Works on any Kubernetes distribution, any cloud, no CLI/API/UI interaction required.</p>
+            <p class="hero-cta mb-0 is-revealing">
+              <a class="button button-primary button-shadow" href="<%- url_for("/v1/guide/installation.html") %>">Deploy</a>
+            </p>
+          </div>
+          <div class="hero-illustration">
+          </div>
+                  </div>
+              </div>
+          </section> 
+
+          <section class="clients section">
+              <div class="container">
+                  <div class="clients-inner section-inner has-top-divider">
+                      <div class="container-sm">
+                          <ul class="list-reset mb-0">                             
+                              <li class="is-revealing">
+                                  <img src="/images/rancher.png" alt="Rancher logo">
+                              </li>
+                              <li class="is-revealing">
+                                  <img src="/images/aws.png" alt="AWS logo">
+                              </li>
+                              <li class="is-revealing">
+                                  <img src="/images/kubernetes.jpg" alt="Kubernetes logo">
+                              </li>                              
+                              <li class="is-revealing">
+                                  <img src="/images/openshift.png" alt="OpenShift logo">
+                              </li>                            
+                              <li class="is-revealing">
+                                <img src="/images/aks.png" alt="Azure Kubernetes logo">
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+    <section class="features section text-center">
+      <div class="container">
+          <div class="features-inner section-inner has-top-divider">
+           <div class="features-header text-center">
+            <div class="container-sm">
+              <h2 class="section-title mt-0">
+                Meet Keel                  
+              </h2>
+              
+              <p class="section-paragraph mb-0">A lightweight, stateless, fully automated solution to update your workloads. Just annotate or label your deployments,
+                daemonsets, statefulsets and Keel will take care of them.
+              </p>
             </div>
           </div>
-          
-        </div>
-        <div id="main">                    
-          <div id="enter">
-            <span id="filler">      
-              <span class="accent">></span>    
-              <strike> kubectl apply -f my-awesome-app.yaml </strike>
-            </span>       
-          </div>
-          <br/>
-                          
-        </div>
-      </div>  
-    </div><div class="right">
-      <h2 class="vue">Don't do it by hand, ever</h2>
-      <p class="point">
-        <strong>Kubectl</strong> is the new <strong>SSH</strong>. If you are using it to update production workloads, you are doing it wrong. See examples on how
-        to automate application updates.
-      </p>      
-      <p>
-        <a class="button white" href="<%- url_for("/v1/examples/enabling-auto-updates.html") %>">VIEW EXAMPLES</a>        
-      </p>
-    </div>  
-  </div>  
-</div>  
-
-
-<div class="shells">
-  <div class="inner">
-    <div class="left">
-      <div class="shell">
-        <div class="upper">
-          <div class="buttons">
-            <div class="button red">
-              <div class="inner-light-top"></div>
-              <div class="inner-light-bottom"></div>
-              <div class="inner-dark-top"></div>
+            <div class="features-wrap">
+                <div class="feature is-revealing">
+                    <div class="feature-inner">
+                        <div class="feature-icon">
+                            <img src="/images/feature-icon-1.png" alt="Feature 01">
+                        </div>
+                        <h4 class="feature-title">Kubernetes & Helm</h4>
+                        <p class="text-sm">Keel integrates with both Kubernetes and <a href="https://www.helm.sh/" target="_blank" rel="noopener">Helm</a>, both 
+                          rollout and release history are available.</p>
+                    </div>
+                </div>
+                <div class="feature is-revealing">
+                    <div class="feature-inner">
+                        <div class="feature-icon">
+                            <img src="/images/feature-icon-02.svg" alt="Feature 02">
+                        </div>
+                        <h4 class="feature-title">Self-service</h4>
+                        <p class="text-sm">Developers and engineers do not need to configure Keel directly. Just annotate your workloads and Keel will start
+                          monitoring them. This strategy keeps Keel stateless.
+                        </p>
+                    </div>
+                </div>
+                <div class="feature is-revealing">
+                    <div class="feature-inner">
+                        <div class="feature-icon">
+                            <img src="/images/feature-icon-03.svg" alt="Feature 03">
+                        </div>
+                        <h4 class="feature-title">All Major Registries Supported</h4>
+                        <p class="text-sm">Keel directly integrates and understands all major registries such as DockerHub, Google Cloud Registry (GCR), Amazon Elastic Container Registry (ECR), Azure, Gitlab, Quay, VMWare Harbor</p>
+                    </div>
+                </div>
+                <div class="feature is-revealing">
+                    <div class="feature-inner">
+                        <div class="feature-icon">
+                            <img src="/images/feature-icon-04.svg" alt="Feature 04">
+                        </div>
+                        <h4 class="feature-title">Notifications</h4>
+                        <p class="text-sm">Out of the box Keel supports Slack, Hipchat, Mattermost and webhook notifications. </p>
+                    </div>
+                </div>
             </div>
-            <div class="button yellow">
-              <div class="inner-light-top"></div>
-              <div class="inner-dark-top"></div>
-              <div class="inner-light-bottom"></div>
-            </div>
-            <div class="button green">
-              <div class="inner-light-top"></div>
-              <div class="inner-dark-top"></div>
-              <div class="inner-light-bottom"></div>
+        </div>
+      </div>
+  </section>
+
+    <section class="features-tabs section">
+              <div class="container">
+                  <div class="features-tabs-inner section-inner has-top-divider">
+          <div class="tabs-container">
+            <ul class="tabs-links">
+              <li class="is-revealing">
+                <a href="#tab-1" class="tab-link is-active">
+                  <img src="/images/tabs-icon-01.svg" alt="Tabs icon 01">
+                  <span class="h4 m-0">Policy Driven</span>
+                </a>
+              </li>
+              <li class="is-revealing">
+                <a href="#tab-2" class="tab-link">
+                  <img src="/images/tabs-icon-02.svg" alt="Tabs icon 02">
+                  <span class="h4 m-0">Approvals</span>
+                </a>
+              </li>
+              <li class="is-revealing">
+                <a href="#tab-3" class="tab-link">
+                  <img src="/images/tabs-icon-03.svg" alt="Tabs icon 03">
+                  <span class="h4 m-0">Ease of use</span>
+                </a>
+              </li>
+            </ul>
+            <div class="tabs-content">
+              <div id="tab-1" class="tab-panel is-active">
+                <h2>Multiple Policies</h2>
+                <p>Keel prefers semantic versioning such as 1.5.0 with semantic policies such as 'patch', 'minor' and 'major'. This strategy let's you 
+                  ensure that your services are stable and there's always a way to rollback.
+                </p>
+                <p class="mb-0">However, in real-world projects not everything can be easily versioned, therefore Keel has a 'glob:anything-*' policy and 'regexp:^([a-zA-Z]+)$'
+                  for those cases when you need that extra flexibility.
+                </p>
+              </div>
+              <div id="tab-2" class="tab-panel">
+                <h2>Approval Enforcement</h2>
+                <p>While automation does save enormous amount of time, you might want to stop some automated updates until a person or another system approves it.</p>
+                <p class="mb-0">
+                  Keel has an approval model, where a Slack, HipChat message (or a webhook) is sent to a certain channel and a user action such is requested to start the update process. 
+                  This feature is especially useful when you have a mixed workloads running in your cluster.
+                </p>
+              </div>
+              <div id="tab-3" class="tab-panel">
+                <h2>Keep it simple</h2>
+                <p>
+                  Keel was built with simplicity in mind. It doesn't have database, caching server or CLI. The main purpose is to save your time. 
+                </p>
+                <p class="mb-0">
+                  Developers don't need to learn new DSL or tools. Keel reads your existing yaml files (configuration is done through metadata labels or 
+                  annotations) or charts and works with them. 
+                </p>
+              </div>
             </div>
           </div>
-          
-        </div>
-        <div id="main">                    
-          <div id="enter">
-            <span id="filler">      
-              <span class="accent">></span>    
-              kubectl create -f deployment-rbac.yaml
-            </span>       
           </div>
-          <br/>
+      </div>
+  </section>
 
-          <div id="enter" >
-            <span id="filler">          
-              namespace <span class="accent">"keel"</span> created
-            </span>       
-          </div>          
-          <br/> 
+    <section class="testimonials section">
+      <div class="container">
+        <div class="testimonials-inner section-inner">
+          <div class="testimonials-header text-center text-light">
+            <h2 class="section-title mt-0">Testimonials</h2>
+          </div>
+          <div class="testimonials-wrap">
+            <div class="testimonial text-sm is-revealing">
+              <div class="testimonial-inner">
+                <div class="testimonial-main">
+                  <div class="testimonial-body">
+                    <p>Keel made my deployments fast and reliable. I don't have to worry anymore about selecting correct image or 
+                      do anything manual with kubectl. I just tag a new release on Github and in a few minutes my production
+                      services are updated. Check out my findings on <a href="https://webhookrelay.com/blog/2018/11/12/rancher-push-to-deploy-workflow/" target="_blank" rel="noopener">this blog post</a>.
+                    </p>
+                  </div>
+                </div>
+                <div class="testimonial-footer">
+                  <div class="testimonial-name"><a href="https://twitter.com/krusenas" target="_blank" rel="noopener">@krusenas - Webhook Relay</a></div>
+                </div>
+              </div>
+            </div>
 
-          <div id="enter" >
-            <span id="filler">          
-              serviceaccount <span class="accent">"keel"</span> created
-            </span>       
-          </div>          
-          <br/> 
-
-          <div id="enter" >
-            <span id="filler">          
-              clusterrolebinding <span class="accent">"keel-clusterrole-binding"</span> created
-            </span>       
-          </div>          
-          <br/> 
-
-          <div id="enter" >
-            <span id="filler">          
-              clusterrole <span class="accent">"keel-clusterrole"</span> created
-            </span>       
-          </div>          
-          <br/> 
-
-          <div id="enter" >
-            <span id="filler">          
-              deployment <span class="accent">"keel"</span> created
-            </span>       
-          </div>                    
+            <!-- <div class="testimonial text-sm is-revealing">
+              <div class="testimonial-inner">
+                <div class="testimonial-main">
+                  <div class="testimonial-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eleifend donec pretium vulputate sapien. Quisque egestas diam in arcu cursus euismod quis.</p>
+                  </div>
+                </div>
+                <div class="testimonial-footer">
+                  <div class="testimonial-name"><a href="#">@mikesmith</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial text-sm is-revealing">
+              <div class="testimonial-inner">
+                <div class="testimonial-main">
+                  <div class="testimonial-body">
+                    <p>I’ve read a ton of blog posts about how some startups hit this milestone with ease. They came up with an amazing idea that “just clicked”, made!</p>
+                  </div>
+                </div>
+                <div class="testimonial-footer">
+                  <div class="testimonial-name"><a href="#">@mikesmith</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial text-sm is-revealing">
+              <div class="testimonial-inner">
+                <div class="testimonial-main">
+                  <div class="testimonial-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eleifend donec pretium vulputate sapien. Quisque egestas diam in arcu cursus euismod quis.</p>
+                  </div>
+                </div>
+                <div class="testimonial-footer">
+                  <div class="testimonial-name"><a href="#">@mikesmith</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial text-sm is-revealing">
+              <div class="testimonial-inner">
+                <div class="testimonial-main">
+                  <div class="testimonial-body">
+                    <p>I’ve read a ton of blog posts about how some startups hit this milestone with ease. They came up with an amazing idea that “just clicked”, made!</p>
+                  </div>
+                </div>
+                <div class="testimonial-footer">
+                  <div class="testimonial-name"><a href="#">@mikesmith</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial text-sm is-revealing">
+              <div class="testimonial-inner">
+                <div class="testimonial-main">
+                  <div class="testimonial-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eleifend donec pretium vulputate sapien. Quisque egestas diam in arcu cursus euismod quis.</p>
+                  </div>
+                </div>
+                <div class="testimonial-footer">
+                  <div class="testimonial-name"><a href="#">@mikesmith</a></div>
+                </div>
+              </div>
+            </div> -->
+          </div>
         </div>
-      </div>  
-    </div><div class="right">
-      <h2 class="vue">Self-hosted, deployable in seconds</h2>
-      <p class="point">
-        Single command, no dependencies. No lock-in, no custom configuration files. Start using now.
-      </p>      
-      <p>
-        <a class="button white" href="<%- url_for("/v1/guide/installation.html#Deploying-with-kubectl") %>">LEARN MORE</a>        
-      </p>
-    </div>  
-  </div>  
-</div>
+      </div>
+    </section>
 
-<div id="highlights">
-  <div class="inner">
-    <div class="point">
-      <h2>No CLI/API required</h2>
-      <p>
-        Runs as a single container, no database required. Policies and trigger types are specified in your application deployment files or Helm charts. 
-        Keel extends Kubernetes without adding complexity.
-      </p>
-    </div>  
+  <section class="pricing section">
+      <div class="container">
+          <div class="pricing-inner section-inner">
+              <h2 class="section-title mt-0 text-center">Pricing</h2>
+          <div>
+            <div class="pricing-tables-wrap">
+              <div class="pricing-table is-revealing">
+                <div class="pricing-table-inner">
+                  <div class="pricing-table-main">
+                    <div class="pricing-table-header mb-24 pb-24">
+                      <div class="pricing-table-title h4 mt-0 mb-16">Free</div>
+                      <!-- <div class="pricing-table-price"><span class="pricing-table-price-currency">$</span><span class="pricing-table-price-amount h1">0</span>/m</div> -->
+                    </div>
+                    <ul class="pricing-table-features list-reset text-xs">
+                      <li>
+                        <span>Automated updates for Kubernetes workloads</span>
+                      </li>
+                      <li>
+                        <span>Automated updates for Helm charts</span>
+                      </li>
+                      <li>
+                        <span>Community support</span>
+                      </li>
+                      <li>
+                        <span>Integration with all major registries</span>
+                      </li>
+                      <li>
+                        <span>Notifications to multiple systems such as Slack, Hipchat, Mattermost</span>
+                      </li>                  
+                    </ul>
+                  </div>
+                  <div class="pricing-table-cta">
+                    <a class="button button-secondary button-shadow button-block" href="<%- url_for("/v1/guide/installation.html") %>">Get started</a>
+                  </div>
+                </div>
+              </div>
+              <div class="pricing-table is-revealing">
+                <div class="pricing-table-inner">
+                  <div class="pricing-table-main">
+                    <div class="pricing-table-header mb-24 pb-24">
+                      <div class="pricing-table-title h4 mt-0 mb-16">Enterprise</div>
+                      <!-- <div class="pricing-table-price"><span class="pricing-table-price-currency">$</span><span class="pricing-table-price-amount h1">1200</span>/m</div> -->
+                    </div>
+                    <ul class="pricing-table-features list-reset text-xs">
+                      <li>
+                        <span>Help on setting up continuous delivery workflows</span>
+                      </li>                   
+                      <li>
+                          <span>Priority fix for issues</span>
+                        </li>
+                      <li>
+                        <span>Priority for feature requests</span>
+                      </li>
+                      <li>
+                        <span>Email & phone support</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="pricing-table-cta">
+                    <a class="button button-primary button-shadow button-block" href="mailto:info@webhookrelay.com" >Contact us</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pricing-faqs container-sm is-revealing">
+            <h4 class="mt-40 mb-32">FAQs</h4>
+              <ul class="accordion">
+                  <li>
+                    <div class="accordion-title">
+                  <span>How does Keel know which workloads to update?</span>
+                  <div class="accordion-icon"></div>
+                </div>
+                <div class="accordion-body">
+                    <p>
+                      Keel has adopted a 'self-service' style of updates. Once Keel is deployed it doesn't get any configuration directly and instead watches
+                      all deployments, daemonsets, statefulsets, cron jobs and Helm charts. Once a user labels or annotates their deployment with Keel 
+                      <a href="<%- url_for("/v1/guide/documentation.html#Policies") %>">policy</a>, it 
+                      starts tracking them and if a new image is detected, it will update all affected containers.
+                    </p>
+                </div>
+              </li>
+              <li>
+                <div class="accordion-title">
+                  <span>Can Keel work with my internal registry?</span>
+                  <div class="accordion-icon"></div>
+                </div>
+                <div class="accordion-body">
+                  <p>
+                    Absolutely. Keel has a concept of <strong>triggers</strong> that can be webhooks, active registry polling or Google Cloud Pub/Sub. 
+                    Out of the box Keel supports standard Docker registry notifications (used by DockerHub, Gitlab registry and VMWare harbor), as well as Azure and 
+                    Quay webhooks.
+                    You can read more about them on the <a href="<%- url_for("/v1/guide/documentation.html#Triggers") %>">triggers documentation section</a>. 
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="accordion-title">
+                  <span>What dependencies does Keel have?</span>
+                  <div class="accordion-icon"></div>
+                </div>
+                <div class="accordion-body">
+                  <p>
+                    None. Keel is fully self-hosted service with zero dependencies and usually uses around 20MB of RAM and a difficult to measure fraction of the CPU. You shouldn't 
+                    be paying for running a CI system, money should go for your actual backend service hosting. It's safe to remove and reinstall Keel at any time, it will discover your
+                    workloads again and establish registry tracking.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="accordion-title">
+                  <span>How does Keel connect to my private registries?</span>
+                  <div class="accordion-icon"></div>
+                </div>
+                <div class="accordion-body">
+                  <p>
+                    In an ideal scenario you would want to use webhooks which make authentication to private registries unnecessary (Keel just updates the version of your image with the newest tag from the push event). 
+                    However, when authentication is required, Keel will lookup 'image pull secrets' that are supplied to your pods by Kubernetes and will re-use them. You don't need to configure anything separately.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          </div>
+      </div>
+  </section>
 
-    <div class="point">
-      <h2>Policy-driven updates</h2>
-      <p>        
-        In order for Keel Just specify on the applications themselves, when you want them to be updated, i.e. from 0.1.0 to 0.2.0 (minor) 
-        or only major versions.
-      </p>
-    </div> 
+    <section class="cta section">
+      <div class="container">
+        <div class="cta-inner section-inner is-revealing">
+          <h3 class="section-title mt-0">Still not convinced?</h3>
+          <div class="cta-cta">
+            <a class="button button-primary button-shadow" href="/v1/examples/enabling-auto-updates.html">Check out examples</a>
+          </div>
+        </div>
+      </div>
+    </section>
+      </main>
 
-    <div class="point">
-      <h2>Open Source</h2>
-      <p>
-          Keel is Open Source and was designed to be easily extendable. Providers, triggers and notification mechanisms are just default interface implementations. 
-          If you need Nomad, Docker Swarm or Mesos support, it's easy to add it.
-      </p>
-    </div>      
+      <footer class="site-footer">
+          <div class="container">
+              <div class="site-footer-inner">
+                  <div class="brand footer-brand">
+                      <a href="#">
+                          <img src="/images/logo_32x32.png" alt="Keel logo">
+                      </a>
+                  </div>
+                  <ul class="footer-links list-reset">
+                      <li>
+                          <a href="mailto:info@webhookrelay.com" rel="noopener">Contact</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/keel-hq/keel" rel="noopener">Github</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/keel-hq/keel/issues" rel="noopener">Issues</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/keel-hq/keel/releases" rel="noopener">Releases</a>
+                      </li>
+                  </ul>
+                  <ul class="footer-social-links list-reset">
+                      <!-- <li>
+                          <a href="#">
+                              <span class="screen-reader-text">Facebook</span>
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M6.023 16L6 9H3V6h3V4c0-2.7 1.672-4 4.08-4 1.153 0 2.144.086 2.433.124v2.821h-1.67c-1.31 0-1.563.623-1.563 1.536V6H13l-1 3H9.28v7H6.023z" fill="#FFF"/>
+                              </svg>
+                          </a>
+                      </li> -->
+                      <li>
+                          <a href="https://twitter.com/keel_hq">
+                              <span class="screen-reader-text">Twitter</span>
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M16 3c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4C.7 7.7 1.8 9 3.3 9.3c-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H0c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4C15 4.3 15.6 3.7 16 3z" fill="#FFF"/>
+                              </svg>
+                          </a>
+                      </li>
+                      <!-- <li>
+                          <a href="#">
+                              <span class="screen-reader-text">Google</span>
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M7.9 7v2.4H12c-.2 1-1.2 3-4 3-2.4 0-4.3-2-4.3-4.4 0-2.4 2-4.4 4.3-4.4 1.4 0 2.3.6 2.8 1.1l1.9-1.8C11.5 1.7 9.9 1 8 1 4.1 1 1 4.1 1 8s3.1 7 7 7c4 0 6.7-2.8 6.7-6.8 0-.5 0-.8-.1-1.2H7.9z" fill="#FFF"/>
+                              </svg>
+                          </a>
+                      </li> -->
+                  </ul>
+                  <div class="footer-copyright">&copy; 2018 Appscension Ltd, all rights reserved</div>
+              </div>
+          </div>
+      </footer>
   </div>
-</div>
-
-<div id="hero">
-  <div class="inner">
-    <div class="left">
-      <a href="https://www.patreon.com/keel" rel="nofollow"><img class="hero-logo" src="<%- url_for("/images/patreon.png") %>"></a>
-    </div><div class="right">      
-      <h1>
-        Support Keel        
-      </h1>
-      <p>
-        Has Keel helped you save time by automating tasks and enforcing policies?
-        Keel can use your help to realize its mission - making developer's and admin's lives easier, further
-        its reach, as well as support its development. There are a few ways you can help - feel free to choose 
-        more than one:        
-      <ul>
-        <li><a href="https://www.patreon.com/bePatron?c=1251059" rel="nofollow">Become a patron</a></li>
-        <li><a href="https://github.com/keel-hq/keel" rel="nofollow">Star me on Github</a></li>
-        <li><a href="https://twitter.com/keel_hq" rel="nofollow">Follow me on Twitter</a></li>
-      </ul>
-      </p>
-      <p>
-        <a class="button white" href="https://www.patreon.com/bePatron?c=1251059" rel="nofollow">Become a patron</a>        
-      </p>      
-      <p>        
-        
-      </p>      
-    </div>
-  </div>
-</div>
-
-
-<div id="hero">
-  <div class="inner">
-    <div class="center">      
-      <h3>
-        Not finding what you are looking for?
-      </h3>
-      <p>
-        Send us an email or submit an issue. Or find Keel's users on Slack - <a rel="nofollow" href="https://kubernetes.slack.com">kubernetes.slack.com</a> look for channel #keel.
-      </p>
-      <p>        
-        <a class="button white" href="mailto:info@webhookrelay.com" rel="nofollow">Send us an email</a> <a class="button white" href="https://github.com/keel-hq/keel/issues" rel="nofollow">Submit an issue</a>
-      </p>
-    </div>
-  </div>
-</div>
-
-<div id="footer">  
-  <p>Copyright &copy; 2016-<%- new Date().getFullYear() %> AppScension Ltd</p>
-  <p><a href="mailto:info@webhookrelay.com" class="nav-link" rel="nofollow">info@webhookrelay.com</a></p>
-</div>
-
-<script>
-(function () {
-  var topScrolled = false  
-  window.addEventListener('scroll', function () {
-    if (window.pageYOffset > 165 && !topScrolled) {
-      topScrolled = true
-      document.getElementById('mobile-bar').classList.remove('top')
-    } else if (window.pageYOffset <= 165 && topScrolled) {
-      topScrolled = false
-      document.getElementById('mobile-bar').classList.add('top')
-    }   
-  })
-})()
-</script>
